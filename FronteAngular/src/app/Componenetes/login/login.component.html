@@ -1,0 +1,19 @@
+
+<form [formGroup]= "formularioLogin" (ngSubmit)="enviarLogin()">
+    
+
+    
+    <div class="mb-3">
+      <label for="" class="form-label">Cedula</label>
+      <input type="email" class="form-control" name="" formControlName="cedula" id="" aria-describedby="emailHelpId" placeholder="">
+      <small id="emailHelpId" class="form-text text-muted">Ingrese su Correo</small>
+    </div>
+    
+    <div class="mb-3">
+      <label for="" class="form-label">Clave</label>
+      <input type="password" class="form-control" name="" formControlName="clave" id="" placeholder="">
+    </div>
+    
+    <button type="submit" class="btn btn-primary" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Enviar</button>
+    
+    </form>
