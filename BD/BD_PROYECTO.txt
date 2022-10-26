@@ -1,0 +1,61 @@
+CREATE DATABASE mapi;
+USE mapi;
+CREATE TABLE acudiente
+(
+  cedula_acudiente INT NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  telefono VARCHAR(100) NOT NULL,
+  telefono_2 VARCHAR(100) ,
+  acudiente_alternativo VARCHAR(100) ,
+  teléfono_alternativo VARCHAR(100) ,
+  clave VARCHAR(100) NOT NULL,
+  PRIMARY KEY (cedula_acudiente)
+);
+
+CREATE TABLE docente
+(
+  cedula_acudiente VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  telefono VARCHAR(100) NOT NULL,
+  institucion VARCHAR(100) NOT NULL,
+  clave VARCHAR(100) NOT NULL,
+  PRIMARY KEY (cedula_acudiente)
+);
+
+CREATE TABLE anuncio
+(
+  codigo_anuncio VARCHAR(100) NOT NULL,
+  descripcion VARCHAR(255) NOT NULL,
+  fecha_creacion DATE NOT NULL,
+  multimedia VARCHAR(255),
+  PRIMARY KEY (codigo_anuncio)
+);
+
+CREATE TABLE niño
+(
+  identificacion VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  genero VARCHAR(100) NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
+  cedula_acudiente INT NOT NULL,
+  parentesco VARCHAR(100) NOT NULL,
+  PRIMARY KEY (identificacion),
+  FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente)
+);
+
+CREATE TABLE salon
+(
+  codigo_salon VARCHAR(100) NOT NULL,
+  nombre_institucion VARCHAR(100) NOT NULL,
+  fecha_creacion DATE NOT NULL,
+  cedula_acudiente VARCHAR(100) NOT NULL,
+  codigo_anuncio VARCHAR(100) NOT NULL,
+  identificacion_niños VARCHAR(100) NOT NULL,
+  PRIMARY KEY (codigo_salon),
+  FOREIGN KEY (cedula_acudiente) REFERENCES docente(cedula_acudiente),
+  FOREIGN KEY (codigo_anuncio) REFERENCES anuncio(codigo_anuncio),
+  FOREIGN KEY (identificacion_niños) REFERENCES niño(identificacion)
+);
