@@ -13,7 +13,7 @@ import { InicioComponent } from './Componenetes/inicio/inicio.component';
 import { LoginComponent } from './Componenetes/login/login.component';
 import { MuroComponent } from './Componenetes/muro/muro.component';
 import { SalirComponent } from './Componenetes/salir/salir.component';
-import { RegistroPadresComponent } from './registro-padres/registro-padres.component';
+import { RegistroPadresComponent } from './Componenetes/registro-padres/registro-padres.component';
 
 
 @NgModule({
@@ -26,6 +26,7 @@ import { RegistroPadresComponent } from './registro-padres/registro-padres.compo
     MuroComponent,
     SalirComponent,
     RegistroPadresComponent
+    
     
   ],
   imports: [
