@@ -1,33 +1,43 @@
+//Angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { routing, appRoutingProvider } from "./app.routing"
 import { RouterModule } from "@angular/router"
-
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { UsuariosComponent } from './Componenetes/usuarios/usuarios.component';
 import {HttpClientModule} from '@angular/common/http';
-import { RegistroComponent } from './Componenetes/registro/registro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InicioComponent } from './Componenetes/inicio/inicio.component';
-import { LoginComponent } from './Componenetes/login/login.component';
-import { MuroComponent } from './Componenetes/muro/muro.component';
-import { SalirComponent } from './Componenetes/salir/salir.component';
-import { RegistroPadresComponent } from './Componenetes/registro-padres/registro-padres.component';
+
+//Usuarios
+import { InicioComponent } from './Componentes/inicio/inicio.component';
+import { LoginComponent } from './Componentes/login/login.component';
+import { SalirComponent } from './Componentes/salir/salir.component';
+
+//Docente
+import { RegistroDocentesComponent } from './Componentes/docente/registro-docentes/registro-docentes.component';
+import { PanelDocenteComponent } from './Componentes/docente/panel-docente/panel-docente.component';
+import { SalonesComponent } from './Componentes/docente/salones/salones.component';
+import { AnunciosComponent } from './Componentes/docente/anuncios/anuncios.component';
+
+//Acudiente
+import { RegistroAcudientesComponent } from './Componentes/acudiente/registro-acudientes/registro-acudientes.component';
+import { PanelAcudienteComponent } from './Componentes/acudiente/panel-acudiente/panel-acudiente.component';
+import { NinosComponent } from './Componentes/acudiente/ninos/ninos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsuariosComponent,
-    RegistroComponent,
     InicioComponent,
     LoginComponent,
-    MuroComponent,
     SalirComponent,
-    RegistroPadresComponent
-    
-    
+    RegistroDocentesComponent,
+    PanelDocenteComponent,
+    SalonesComponent,
+    AnunciosComponent,
+    RegistroAcudientesComponent,
+    PanelAcudienteComponent,
+    NinosComponent
   ],
   imports: [
     BrowserModule,

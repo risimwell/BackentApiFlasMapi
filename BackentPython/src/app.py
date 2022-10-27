@@ -12,6 +12,69 @@ CORS(app, resources={r"/registro/*": {"origins": "http://localhost:4200"}})
 CORS(app, resources={r"/login/*": {"origins": "http://localhost:4200"}})
 conexion = MySQL(app)
 
+#Metodos propios de mapi
+
+@app.route('/acudientes', methods=['GET'])
+def leer_acudientes():
+    try:
+        curso=acudientes()
+        if curso != None:
+            return jsonify({'curso': curso, 'mensaje': "Sin acudientes.", 'exito': True})
+        else:
+            return jsonify({'mensaje': "Curso no encontrado.", 'exito': False})
+    except Exception as ex:
+        return jsonify({'mensaje': "Error", 'exito': False})
+
+
+def acudientes():
+    try:
+        cursor = conexion.connection.cursor()
+        sql = "SELECT * FROM acudiente"
+        cursor.execute(sql)
+        datos = cursor.fetchone()
+        if datos != None:
+            curso = {'cedula_acudiente': datos[0], 'nombre': datos[1], 'apellido': datos[2], 'telefono':datos[3],'telefono_2': datos[4], 'acudiente_alternativo':datos[5],'telefono_alternativo': datos[6], 'clave':datos[7]}
+            return curso
+        else:
+            return None
+    except Exception as ex:
+        raise ex
+
+
+@app.route('/registroacudiente', methods=['POST'])
+def registrar_acudienete():
+        try:
+            cursor = conexion.connection.cursor()
+            sql = """INSERT INTO acudiente (cedula_acudiente,nombre, apellido, telefono, clave) 
+            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')""".format(request.json['cedula_acudiente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['clave'])
+            print("codigo sql", sql)
+            # Ejecutar la sentencia SQL
+            cursor.execute(sql)
+            # Aceptar la sentencia SQL
+            conexion.connection.commit()  # Confirma la acción de inserción.
+            return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
+@app.route('/registrodocente', methods=['POST'])
+def registrar_docente():
+        try:
+            cursor = conexion.connection.cursor()
+            sql = """INSERT INTO docente (cedula_docente,nombre, apellido, telefono,institucion, clave) 
+            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['cedula_docente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['institucion'],request.json['clave'])
+            print("codigo sql", sql)
+            # Ejecutar la sentencia SQL
+            cursor.execute(sql)
+            # Aceptar la sentencia SQL
+            conexion.connection.commit()  # Confirma la acción de inserción.
+            return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
 # @cross_origin
 @app.route('/cursos', methods=['GET'])
 def listar_cursos():
@@ -55,54 +118,6 @@ def leer_curso(codigo):
     except Exception as ex:
         return jsonify({'mensaje': "Error", 'exito': False})
 
-
-@app.route('/registro', methods=['POST'])
-def registrar_curso():
-    # print(request.json)
-   
-        try:
-            cursor = conexion.connection.cursor()
-            sql = """INSERT INTO usuarios (nombres, apellidos, cedula, clave, telefono) 
-            VALUES ('{0}', '{1}', '{2}', '{3}', {4})""".format(request.json['nombres'],request.json['apellidos'],request.json['cedula'],request.json['clave'],request.json['telefono'])
-            print("SENTENCIA", sql)
-            # Ejecutar la sentencia SQL
-            cursor.execute(sql)
-            # Aceptar la sentencia SQL
-            conexion.connection.commit()  # Confirma la acción de inserción.
-            return jsonify({'mensaje': "Curso registrado.", 'exito': True}), 200
-        except Exception as ex:
-            print(ex)
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
-    
-        return jsonify({'mensaje': "Parámetros inválidos...", 'exito': False})
-
-@app.route('/login', methods=['POST'])
-def iniciar_sesion():
-    # Tomo los datos que provienen del JSON
-    # #  request.json
-    # Obtengo el correo y la contrasena de la base de datos usando el correo que me entregan por el JSON
-    cedula = request.json['cedula']
-    clave = request.json['clave']
-    cursor = conexion.connection.cursor()
-    sql = "SELECT clave, nombres FROM usuarios WHERE cedula='%s'" %cedula
-    cursor.execute(sql)
-    resultado = cursor.fetchone()
-
-
-    if resultado is not None:
-        if (clave == resultado[0]):
-            print("estoy adentro")
-            return jsonify({'mensaje': "Login Exitoso.", 'exito': True,'nombre':resultado[1]}), 200
-            
-            
-        else:
-            
-            return " Contrasena Incorrecta" 
-    return " usuario no existe"
-    
-    
-    
-    
 
 @app.route('/cursos/<codigo>', methods=['PUT'])
 def actualizar_curso(codigo):
