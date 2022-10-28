@@ -10,7 +10,7 @@ import {AcudienteService} from '../../../Servicios/acudiente/acudiente.service'
   styleUrls: ['./registro-acudientes.component.css']
 })
 export class RegistroAcudientesComponent implements OnInit {
-  //Capturamos los datos del formulario
+  //Capturamos los datos del formulario de los acudientes
   formulario =new FormGroup({
       cedula_acudiente: new FormControl('',Validators.required),
       nombre: new FormControl('',Validators.required),
