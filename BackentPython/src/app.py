@@ -102,7 +102,31 @@ def registrar_docente():
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
 
+@app.route('/login', methods=['POST'])
+def iniciar_sesion():
+    # Tomo los datos que provienen del JSON
+    # #  request.json
+    # Obtengo el correo y la contrasena de la base de datos usando el correo que me entregan por el JSON
+    cedula = request.json['cedula']
+    clave = request.json['clave']
+    cursor = conexion.connection.cursor()
+    sql = "SELECT clave, nombres FROM usuarios WHERE cedula='%s'" %cedula
+    cursor.execute(sql)
+    resultado = cursor.fetchone()
 
+
+    if resultado is not None:
+        if (clave == resultado[0]):
+            print("estoy adentro")
+            return jsonify({'mensaje': "Login Exitoso.", 'exito': True,'nombre':resultado[1]}), 200
+            
+            
+        else:
+            
+            return " Contrasena Incorrecta" 
+    return " usuario no existe" 
+
+    
 # @cross_origin
 @app.route('/cursos', methods=['GET'])
 def listar_cursos():

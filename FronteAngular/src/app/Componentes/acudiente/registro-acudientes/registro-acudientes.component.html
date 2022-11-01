@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="contenedor_global">
   <div class="contenedor_principal">
     <div class="row contenedor_secundario">
@@ -34,6 +35,21 @@
                 <button  class="btn btn-success" >Registrar</button>
               </form>
             </div>
+=======
+<div class="card border-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">Formulario de registro Acudiente</div>  
+  
+  <div class="card-body text-primary">
+    <form [formGroup]="formulario" (ngSubmit)="Registrar(formulario.value)">
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="cedula_acudiente" name="cedula_acudiente" placeholder="Cedula" formControlName="cedula_acudiente" required>
+        </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" formControlName="nombre" required>
+>>>>>>> 6d7172a47ac4a32af5787f13d886ce69b0108109
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
