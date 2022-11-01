@@ -40,10 +40,10 @@ Registrar(form:any){
         nombre:form.nombre,
         apellido:form.apellido,
         telefono:form.telefono,
-        institucion:form.instituacion,
+        institucion:form.institucion,
         clave:form.clave
     }
-
+    console.log(docente)
     //Envio de datos al servicio
     this.servicio_Docente.create(docente).subscribe({
         next: () => {

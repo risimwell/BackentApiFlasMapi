@@ -1,19 +1,38 @@
-
-<!-- <form [formGroup]= "formularioLogin" (ngSubmit)="enviarLogin()"> -->
-
-
-
-    <div class="mb-3">
-      <label for="" class="form-label">Cedula</label>
-      <input type="email" class="form-control" name="" formControlName="cedula" id="" aria-describedby="emailHelpId" placeholder="">
-      <small id="emailHelpId" class="form-text text-muted">Ingrese su Correo</small>
-    </div>
-
-    <div class="mb-3">
-      <label for="" class="form-label">Clave</label>
-      <input type="password" class="form-control" name="" formControlName="clave" id="" placeholder="">
-    </div>
-
-    <button type="submit" class="btn btn-primary" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Enviar</button>
-
-    <!-- </form> -->
+<div class="container">
+  <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+          <div class="well well-sm">
+            <form class="form-horizontal" [formGroup]= "formulario" (ngSubmit)="ingresar(formulario.value)">
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Campo de cedula -->
+                    <div class="form-group">
+                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                      <div class="col-md-8">
+                        <input type="email" class="form-control" name="cedula" formControlName="cedula" id="cedula" placeholder="Documento identidad">
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Campo de clave -->
+                    <div class="form-group">
+                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                      <div class="col-md-8">
+                        <input type="password" class="form-control" name="clave" formControlName="clave" id="clave" placeholder="Clave">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Boton -->
+                    <div class="form-group">
+                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <button type="submit" class="btn btn-dark" data-bs-toggle="button" aria-pressed="false" autocomplete="off">Ingresar</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+  </div>
+</div>

@@ -29,9 +29,7 @@ export class DocenteService {
   }
 
   create(data: Creardocente): Observable<any> {
-    console.log(data);
-    console.log(this.http.post(`${baseUrl}/registroDocente`, data))
-    return this.http.post(`${baseUrl}/registroDocente`, data);
+    return this.http.post(`${baseUrl}/registrodocente`, data);
   }
 
   update(id: any, data: any): Observable<any> {

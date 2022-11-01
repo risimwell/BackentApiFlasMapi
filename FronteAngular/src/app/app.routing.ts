@@ -28,8 +28,8 @@ const appRoutes:Routes=[
   {path:'panelacudiente',component:PanelAcudienteComponent},
   {path:'ninos',component:NinosComponent},
   //Rutas docente
-  {path:'registroDocente',component:RegistroDocentesComponent},
-  {path:'panelDocente',component:PanelDocenteComponent},
+  {path:'registrodocente',component:RegistroDocentesComponent},
+  {path:'paneldocente',component:PanelDocenteComponent},
   {path:'salones',component:SalonesComponent},
   {path:'anuncios',component:AnunciosComponent},
   //Rutas generales

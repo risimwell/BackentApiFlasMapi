@@ -3,12 +3,10 @@ export interface Objetodocente{
     nombre:String;
     apellido:String;
     telefono:String;
-    telefono_2:String;
-    acudiente_alternativo:String;
-    telefono_alternativo:String;
+    institucion:String;
     clave:String;
   }
-  
+
   export interface Creardocente{
     cedula_docente:String;
     nombre:String;
@@ -17,9 +15,3 @@ export interface Objetodocente{
     institucion:String;
     clave:String;
   }
-  
-  export interface Validarusuario{
-    email:String;
-    password:String;
-  }
-  
