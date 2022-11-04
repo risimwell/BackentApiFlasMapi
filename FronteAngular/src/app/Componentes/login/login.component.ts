@@ -12,7 +12,7 @@ import { LoginService } from 'src/app/Servicios/login/login.service';
 export class LoginComponent implements OnInit {
 
   formulario:FormGroup;
-  mensaje:any=""
+  usuario:any=""
   constructor(public formularios:FormBuilder,private loginService:LoginService, private router:Router) {
       this.formulario=this.formularios.group({
         cedula:[''],
@@ -26,23 +26,23 @@ export class LoginComponent implements OnInit {
 
   ingresar(formulario:any):any{
     this.loginService.inicioSesion(this.formulario.value).subscribe(
-      
-        (response) => {
-          
-          alert("Ingreso correcto"+response.mensaje)
-          console.log(response.mensaje)
-          this.mensaje=response.mensaje
-          console.log(this.mensaje)
-
-          // Si el usuario se registra con éxito
-          // Redirigir el usuario a la página inicio
-          this.router.navigateByUrl('')
-
+        (data) => {
+          this.usuario=data.usuario
+          if(this.usuario=="acudiente"){
+            this.router.navigateByUrl('/panelacudiente')
+          }else{
+            if(this.usuario=="docente") {
+              this.router.navigateByUrl('/paneldocente')
+            }else {
+              alert("Usuario no identificado")
+              this.router.navigateByUrl('/login')
+            }
+          }
         },
          (error) => {
           // Si hubo un error dentro del registro del usuario
           alert("Contrasena Incorrecta o Usuario no registrado")
-        
+
       }
     )
   }

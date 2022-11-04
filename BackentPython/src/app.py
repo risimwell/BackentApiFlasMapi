@@ -54,17 +54,17 @@ def iniciar_sesion():
     if resultado is not None:
         if (clave == resultado[0]):
             tipoUsuario=request.json
-            return jsonify({'mensaje': "1" }),200
+            return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[1]}), 200
         else:
             return " Contraseña Incorrecta" 
     else:
         cursor = conexion.connection.cursor()
-        sql = "SELECT nombre,clave FROM docente WHERE cedula_docenta='%s'" %cedula
+        sql = "SELECT nombre,clave FROM docente WHERE cedula_docente='%s'" %cedula
         cursor.execute(sql)
         resultado = cursor.fetchone()
         if resultado is not None:
             if (clave == resultado[0]):
-                return jsonify({'mensaje': "acudiente", 'exito': True,'nombre':resultado[1]}), 200
+                return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[1]}), 200
             else:
                 return " Contraseña Incorrecta" 
         return "Usuario no registrado"
