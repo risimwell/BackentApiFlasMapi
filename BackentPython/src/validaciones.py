@@ -12,4 +12,3 @@ def validar_correo(cedula: str) -> bool:
     cedula = cedula.strip()
     return (len(cedula) > 0 and len(cedula) <= 30)
 
-def validar_sesion()

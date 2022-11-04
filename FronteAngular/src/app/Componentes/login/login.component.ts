@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
+
 import { LoginService } from 'src/app/Servicios/login/login.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { LoginService } from 'src/app/Servicios/login/login.service';
 export class LoginComponent implements OnInit {
 
   formulario:FormGroup;
-
+  mensaje:any=""
   constructor(public formularios:FormBuilder,private loginService:LoginService, private router:Router) {
       this.formulario=this.formularios.group({
         cedula:[''],
@@ -25,19 +26,23 @@ export class LoginComponent implements OnInit {
 
   ingresar(formulario:any):any{
     this.loginService.inicioSesion(this.formulario.value).subscribe(
-      {
-        next: () => {
+      
+        (response) => {
           
-          alert("Ingreso correcto")
+          alert("Ingreso correcto"+response.mensaje)
+          console.log(response.mensaje)
+          this.mensaje=response.mensaje
+          console.log(this.mensaje)
+
           // Si el usuario se registra con éxito
           // Redirigir el usuario a la página inicio
           this.router.navigateByUrl('')
 
         },
-        error: () => {
+         (error) => {
           // Si hubo un error dentro del registro del usuario
           alert("Contrasena Incorrecta o Usuario no registrado")
-        }
+        
       }
     )
   }
