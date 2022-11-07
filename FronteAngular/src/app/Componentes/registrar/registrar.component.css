@@ -1,26 +1,40 @@
 .contenedor_principal{
   margin: 10px;
-    background: #86A3F8;
+  background: #86A3F8;
   border: 1.39844px solid #000000;
   box-shadow: 0px 2.79687px 2.79687px rgba(0, 0, 0, 0.25);
   border-radius: 20.9766px;
-  
-  }
-  .contenedor_secundario{
+}
+.contenedor_secundario{
     margin: 10px;
     padding: 5px;
     background: #FF8E35;
     border: 1.39844px solid #000000;
     box-shadow: 0px 3px 2.79687px rgba(0, 0, 0, 0.25);
     border-radius: 20.9766px;
-  }
-  .card{
-    background: #FF8E35;
+}
+.card{
     border: transparent;
-  }
-  .card-header{
+}
+.card-body{
     background: #FF8E35;
+}
+.card-header{
+    background: transparent;
     border: transparent;
-  }
-  
-  
+}
+.card-header h1{
+  margin-left: 180px;
+  color: azure;
+}
+.card-header .nav{
+  border: transparent;
+}
+.card-header ul li button{
+  background: transparent;
+  border: transparent;
+}
+a{
+  color: azure;
+  text-decoration: none;
+}
