@@ -6,9 +6,11 @@
           <h1>Registrate</h1>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-          <!-- Este es el menu que deja cambiar entre fomularios -->
+    </div>
+    <div class="row contenedor_secundario">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <!-- Este es el menu que deja cambiar entre fomularios -->
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
            <button class="nav-link active" id="acudiente-tab" data-bs-toggle="tab" data-bs-target="#acudiente" type="button" role="tab" aria-controls="acudiente" aria-selected="false">Acudiente</button>
@@ -18,15 +20,6 @@
         </li>
      </ul>
      <!-- Hasta aca va el menu que deja cambiar entre formularios  -->
-        </div>
-
-      </div>
-
-
-    </div>
-    <div class="row contenedor_secundario">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="card-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <!-- Aca va el contenido -->
               <div class="row">
                 <div class="tab-content general col-lg-12 col-md-12 col-sm-12 col-xs-12" id="myTabContent">
@@ -38,18 +31,18 @@
                              <div class="row">
                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 columnaform">
                                  <form [formGroup]="formulario_acudiente" (ngSubmit)="Registrar_acudiente(formulario_acudiente.value)">
-                                   <div class="form-group ">
-                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                       <input type="text" class="form-control" id="cedula_acudiente" name="cedula_acudiente" placeholder="Cedula" formControlName="cedula_acudiente" required>
-                                     </div>
+                                   <div class="form-group campos ">
+
+                                    <img src="../../../assets/cedula.png" height="50px">
+                                    <input type="text" class="form-control" id="cedula_acudiente" name="cedula_acudiente" placeholder="Cedula" formControlName="cedula_acudiente" required>
                                    </div>
                                    <div class="form-group">
-                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                         <input type="text" class="form-control" id="nombre_acudiente" name="nombre_acudiente" placeholder="Nombre" formControlName="nombre_acudiente" required>
-                                       </div>
+                                      <img src="../../../assets/cedula.png" height="50px">
+                                      <input type="text" class="form-control" id="nombre_acudiente" name="nombre_acudiente" placeholder="Nombre" formControlName="nombre_acudiente" required>
                                    </div>
                                    <div class="form-group ">
                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                      <img src="../../../assets/cedula.png" height="50px" >
                                        <input type="text" class="form-control" id="apellido_acudiente" name="apellido_acudiente" placeholder="Apellido" formControlName="apellido_acudiente" required>
                                      </div>
                                  </div>
@@ -65,7 +58,7 @@
                                    </div>
                                    <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                      <button type="button" class="btn btn-success btn-rounded btn-floating" data-mdb-ripple-color="dark">Registrar</button>
+                                      <button type="submit" class="btn btn-success" >Registrar</button>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                       <a href="/login">iniciar sesion</a>
@@ -126,7 +119,7 @@
                                        </div>
                                        <div class="row">
                                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                          <button type="button" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Registrar</button>
+                                          <button type="submit" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Registrar</button>
 
                                            <a href="/login">iniciar sesion</a>
                                          </div>

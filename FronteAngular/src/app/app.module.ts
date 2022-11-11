@@ -35,7 +35,7 @@ import { RegistrarComponent } from './Componentes/registrar/registrar.component'
     AnunciosComponent,
     PanelAcudienteComponent,
     NinosComponent,
-    RegistrarComponent
+    RegistrarComponent,
   ],
   imports: [
     BrowserModule,

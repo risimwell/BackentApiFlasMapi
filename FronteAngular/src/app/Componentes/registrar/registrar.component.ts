@@ -60,6 +60,7 @@ export class RegistrarComponent implements OnInit {
           alert("Acudiente registrado con exito")
           //Redireccion a la pagina
           this.router.navigateByUrl('panelacudiente')
+
         },
         error: () => {
           // Si hubo un error dentro del registro del usuario

@@ -11,6 +11,7 @@ import { LoginComponent } from './Componentes/login/login.component';
 import { SalirComponent } from './Componentes/salir/salir.component';
 import { RegistrarComponent } from './Componentes/registrar/registrar.component';
 
+
 //Docente
 import { PanelDocenteComponent } from './Componentes/docente/panel-docente/panel-docente.component';
 import { SalonesComponent } from './Componentes/docente/salones/salones.component';
@@ -22,7 +23,8 @@ import { NinosComponent } from './Componentes/acudiente/ninos/ninos.component';
 
 const appRoutes:Routes=[
   //Ruta principal
-  {path:'', component: InicioComponent},
+  // {path:'', component: InicioComponent},
+  {path:'', component: LoginComponent},
   //Rutas acudiente
   {path:'panelacudiente',component:PanelAcudienteComponent},
   {path:'ninos',component:NinosComponent},
