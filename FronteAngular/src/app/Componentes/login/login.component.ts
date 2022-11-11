@@ -25,17 +25,19 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar(formulario:any):any{
+    console.log(formulario)
     this.loginService.inicioSesion(this.formulario.value).subscribe(
         (data) => {
           this.usuario=data.usuario
+          console.log(this.usuario)
           if(this.usuario=="acudiente"){
-            this.router.navigateByUrl('/panelacudiente')
+            this.router.navigateByUrl('panelacudiente')
           }else{
             if(this.usuario=="docente") {
-              this.router.navigateByUrl('/paneldocente')
+              this.router.navigateByUrl('paneldocente')
             }else {
               alert("Usuario no identificado")
-              this.router.navigateByUrl('/login')
+              this.router.navigateByUrl('login')
             }
           }
         },
