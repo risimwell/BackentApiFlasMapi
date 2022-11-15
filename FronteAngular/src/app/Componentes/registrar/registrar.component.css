@@ -28,7 +28,7 @@
   color: azure;
 }
 .card-body .nav{
-  background: blue;
+  background: transparent;
   border: transparent;
 }
 .card-body ul li button{

@@ -53,8 +53,7 @@ def iniciar_sesion():
     resultado = cursor.fetchone()
     if resultado is not None:
         if (clave == resultado[0]):
-            tipoUsuario=request.json
-            return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[1]}), 200
+            return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[1],'cedula':cedula}), 200
         else:
             return " Contraseña Incorrecta" 
     else:
@@ -64,12 +63,13 @@ def iniciar_sesion():
         resultado = cursor.fetchone()
         if resultado is not None:
             if (clave == resultado[0]):
-                return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[1]}), 200
+                return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[1],'cedula':cedula}), 200
             else:
                 return " Contraseña Incorrecta" 
         return "Usuario no registrado"
 
 
+#CRUD acudiente
 @app.route('/registroacudiente', methods=['POST'])
 def registrar_acudienete():
         try:
@@ -87,6 +87,41 @@ def registrar_acudienete():
             return jsonify({'mensaje': "Error", 'exito': False}), 400
 
 
+@app.route('/actualizaracudiente/<cedula>', methods=['PUT'])
+def actualizar_acudiente(cedula):
+    #if (validar_nombres(codigo) and validar_apellidos(request.json['nombre']) and validar_correo(request.json['creditos'])):
+        try:
+            curso = verificar_existencia(cedula)
+            if curso != None:
+                cursor = conexion.connection.cursor()
+                sql = """UPDATE curso SET nombre = '{0}', creditos = {1} 
+                WHERE codigo = '{2}'""".format(request.json['nombre'], request.json['creditos'], codigo)
+                cursor.execute(sql)
+                conexion.connection.commit()  # Confirma la acción de actualización.
+                return jsonify({'mensaje': "Curso actualizado.", 'exito': True})
+            else:
+                return jsonify({'mensaje': "Curso no encontrado.", 'exito': False})
+        except Exception as ex:
+            return jsonify({'mensaje': "Error", 'exito': False})
+    #else:
+        #return jsonify({'mensaje': "Parámetros inválidos...", 'exito': False})
+
+def verificar_existencia(cedula):
+    try:
+        cursor = conexion.connection.cursor()
+        sql = "SELECT codigo, nombre, creditos FROM curso WHERE codigo = '{0}'".format(codigo)
+        cursor.execute(sql)
+        datos = cursor.fetchone()
+        if datos != None:
+            curso = {'codigo': datos[0], 'nombre': datos[1], 'creditos': datos[2]}
+            return curso
+        else:
+            return None
+    except Exception as ex:
+        raise ex
+
+
+#CRUD docente
 @app.route('/registrodocente', methods=['POST'])
 def registrar_docente():
         try:
