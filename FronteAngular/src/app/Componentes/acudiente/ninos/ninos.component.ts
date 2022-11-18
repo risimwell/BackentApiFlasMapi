@@ -34,6 +34,7 @@ export class NinosComponent implements OnInit {
 
   Registrar_nino(form:any){
     console.log("Esta entrando aca");
+<<<<<<< Updated upstream
   const nino: Crearnino={
         identificacion:form.identificacion,
         nombre:form.nombre,
@@ -41,8 +42,21 @@ export class NinosComponent implements OnInit {
         fecha_nacimiento:form.fechanacimiento,
         genero:form.genero,
         parentesco:form.parentesco
+=======
+    const nino: Objetonino={
+      identificacion: form.identificacion,
+      nombre: form.nombre,
+      apellido: form.apellido,
+      fecha_nacimiento: form.fechanacimiento,
+      genero: form.genero,
+      parentesco: form.parentesco,
+      edad: form.edad,
+      cedula_acudiente:form.cedula_acudiente
+>>>>>>> Stashed changes
     }
     this.servicio_nino.create
+
+    
 
     console.log("si manda datos desde el componenete principal")
   }
