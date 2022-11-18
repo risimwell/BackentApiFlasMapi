@@ -1,0 +1,11 @@
+--------------------Procedimientos almacenados------------------------------------
+--------------------Acudiente------------------------------------------------------
+CREATE PROCEDURE registro_acudiente(cedula_acudiente varchar(255), nombre varchar(255), apellido varchar(255), telefono varchar(255), clave varchar(255))
+INSERT INTO `acudiente`(`cedula_acudiente`, `nombre`, `apellido`, `telefono`, `clave`) VALUES (cedula_acudiente,nombre,apellido,telefono,clave)
+
+
+CREATE PROCEDURE actualizar_acudiente(cedula_acudiente varchar(255),nombre varchar(255), apellido varchar(255), telefono varchar(255),telefono_2 varchar(255),acudiente_alternativo varchar(255), clave varchar(255))
+UPDATE `acudiente` SET `nombre`=nombre,`apellido`=apellido,`telefono`=telefono,`telefono_2`=telefono_2,`acudiente_alternativo`=acudiente_alternativo WHERE `cedula_acudiente`=cedula_acudiente
+
+CREATE PROCEDURE eliminar_acudiente(cedula_acudiente varchar(255))
+DELETE FROM `acudiente` WHERE `cedula_acudiente`=cedula_acudiente

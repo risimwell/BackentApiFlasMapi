@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, Form } from '@angular/
 import { Router } from "@angular/router";
 
 //Objetos y clases
-import { Objetonino } from './../../../Modelos/Nino/nino';
+import { Objetonino, Crearnino } from './../../../Modelos/Nino/nino';
 //Servicios
 import { NinoService } from './../../../Servicios/nino/nino.service';
 
@@ -24,6 +24,8 @@ export class NinosComponent implements OnInit {
     fecha_nacimiento: new FormControl('',Validators.required),
     parentesco: new FormControl('',Validators.required)
   })
+  //Objeto
+  nino: Objetonino[]=[];
 
   constructor(private servicio_nino:NinoService,private formBuilder:FormBuilder,private router:Router) { }
 
@@ -32,7 +34,7 @@ export class NinosComponent implements OnInit {
 
   Registrar_nino(form:any){
     console.log("Esta entrando aca");
-    const nino: Objetonino={
+  const nino: Crearnino={
         identificacion:form.identificacion,
         nombre:form.nombre,
         apellido:form.apellido,
@@ -40,7 +42,7 @@ export class NinosComponent implements OnInit {
         genero:form.genero,
         parentesco:form.parentesco
     }
-    this.servicio_nino
+    this.servicio_nino.create
 
     console.log("si manda datos desde el componenete principal")
   }

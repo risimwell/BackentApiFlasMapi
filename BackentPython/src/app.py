@@ -1,10 +1,12 @@
+from datetime import date
+from datetime import datetime
 from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
 
 from config import config
-from validaciones import *
-
+from VALIDACIONES.validaciones import *
+from CREATE.Regitros import *
 app = Flask(__name__)
 
 # CORS(app)
@@ -71,54 +73,20 @@ def iniciar_sesion():
 
 #CRUD acudiente
 @app.route('/registroacudiente', methods=['POST'])
-def registrar_acudienete():
+def registrar_acudiente():
         try:
-            cursor = conexion.connection.cursor()
-            sql = """INSERT INTO acudiente (cedula_acudiente,nombre, apellido, telefono, clave) 
-            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')""".format(request.json['cedula_acudiente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['clave'])
-            print("codigo sql", sql)
-            # Ejecutar la sentencia SQL
-            cursor.execute(sql)
-            # Aceptar la sentencia SQL
-            conexion.connection.commit()  # Confirma la acción de inserción.
-            return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
+            if validar_campo(request) :
+                print (validar_campo(request.json['cedula_acudiente']))
+                return jsonify({'mensaje': "Algun campo esta vacio", 'exito': False}), 400
+            else:
+                if registro_acudiente(request):
+                    return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
+                else:
+                    return jsonify({'mensaje': "Error", 'exito': False}), 400
+               
         except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
-
-
-@app.route('/actualizaracudiente/<cedula>', methods=['PUT'])
-def actualizar_acudiente(cedula):
-    #if (validar_nombres(codigo) and validar_apellidos(request.json['nombre']) and validar_correo(request.json['creditos'])):
-        try:
-            curso = verificar_existencia(cedula)
-            if curso != None:
-                cursor = conexion.connection.cursor()
-                sql = """UPDATE curso SET nombre = '{0}', creditos = {1} 
-                WHERE codigo = '{2}'""".format(request.json['nombre'], request.json['creditos'], codigo)
-                cursor.execute(sql)
-                conexion.connection.commit()  # Confirma la acción de actualización.
-                return jsonify({'mensaje': "Curso actualizado.", 'exito': True})
-            else:
-                return jsonify({'mensaje': "Curso no encontrado.", 'exito': False})
-        except Exception as ex:
-            return jsonify({'mensaje': "Error", 'exito': False})
-    #else:
-        #return jsonify({'mensaje': "Parámetros inválidos...", 'exito': False})
-
-def verificar_existencia(cedula):
-    try:
-        cursor = conexion.connection.cursor()
-        sql = "SELECT codigo, nombre, creditos FROM curso WHERE codigo = '{0}'".format(codigo)
-        cursor.execute(sql)
-        datos = cursor.fetchone()
-        if datos != None:
-            curso = {'codigo': datos[0], 'nombre': datos[1], 'creditos': datos[2]}
-            return curso
-        else:
-            return None
-    except Exception as ex:
-        raise ex
 
 
 #CRUD docente
@@ -134,6 +102,31 @@ def registrar_docente():
             # Aceptar la sentencia SQL
             conexion.connection.commit()  # Confirma la acción de inserción.
             return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
+#CRUD ninos
+@app.route('/registronino', methods=['POST'])
+def registrar_nino():
+        try:
+            cursor = conexion.connection.cursor()
+            nacimiento= request.json['fecha_nacimiento']
+            print(nacimiento)
+            ahora = datetime.strptime(nacimiento, '%Y-%m-%d')
+            now = datetime.now()
+            print(ahora)
+            edad=now-ahora
+            edad=edad/365
+            print(edad)
+            sql = "CALL crear_nino('{0}', '{1}', '{2}', '{3}','{4}', '{5}','{6}')".format(request.json['identificacion'],request.json['nombre'],request.json['apellido'],edad,request.json['genero'],request.json['fecha_nacimiento'],request.json['parentesco'])
+            print("codigo sql", sql)
+            # Ejecutar la sentencia SQL
+            cursor.execute(sql)
+            # Aceptar la sentencia SQL
+            conexion.connection.commit()  # Confirma la acción de inserción.
+            return jsonify({'mensaje': "niño registrado.", 'exito': True}), 200
         except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400

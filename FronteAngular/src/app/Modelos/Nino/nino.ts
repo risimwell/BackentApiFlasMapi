@@ -9,5 +9,15 @@ export interface Objetonino{
   cedula_acudiente:String;
 }
 
+export interface Crearnino{
+  identificacion:String;
+  nombre:String;
+  apellido:String;
+  genero:String;
+  fecha_nacimiento:Date;
+  parentesco:String;
+  
+}
+
 
 
