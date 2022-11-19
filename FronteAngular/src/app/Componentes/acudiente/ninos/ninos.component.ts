@@ -43,7 +43,7 @@ export class NinosComponent implements OnInit {
         apellido:form.apellido,
         genero:form.genero,
         fecha_nacimiento:form.fechanacimiento,
-        parentesco_acudiente:form.parentesco,
+        parentesco_acudiente:form.parentesco_acudiente,
         cedula_acudiente:this.obtenerData.obtenerCedula(),
         grupo:form.grupo
 
