@@ -34,7 +34,7 @@ const addacudiente = async (req, res) => {
         else{
             const acudiente = { cedula_acudiente,nombre,apellido,telefono,clave };
             const connection = await getConnection();
-            await connection.query("INSERT INTO acudiente SET ?", acudiente);
+            await connection.query("call registro_acudiente(?)", acudiente);
             res.json({ message: "Usuaro añadido" });
         }
         

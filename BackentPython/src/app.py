@@ -75,18 +75,13 @@ def iniciar_sesion():
 @app.route('/registroacudiente', methods=['POST'])
 def registrar_acudiente():
         try:
-            if validar_campo(request) :
-                print (validar_campo(request.json['cedula_acudiente']))
-                return jsonify({'mensaje': "Algun campo esta vacio", 'exito': False}), 400
+            if registro_acudiente(request):
+                return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
             else:
-                if registro_acudiente(request):
-                    return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
-                else:
-                    return jsonify({'mensaje': "Error", 'exito': False}), 400
-               
+                return jsonify({'mensaje': "No se pudo realizar el registro", 'exito': False}), 400
         except Exception as ex:
             print(ex)
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
 #CRUD docente

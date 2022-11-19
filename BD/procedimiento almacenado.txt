@@ -9,3 +9,20 @@ UPDATE `acudiente` SET `nombre`=nombre,`apellido`=apellido,`telefono`=telefono,`
 
 CREATE PROCEDURE eliminar_acudiente(cedula_acudiente varchar(255))
 DELETE FROM `acudiente` WHERE `cedula_acudiente`=cedula_acudiente
+
+
+-------------------Niño-----------------------------------------------------------------
+CREATE PROCEDURE actualizar_informacion_niño(nombre varchar(255), apellido varchar(255), genero varchar(255),fecha_nacimiento date,parentesco varchar(255)) 
+UPDATE `niño` SET `nombre`=nombre,`apellido`=apellido,`genero`=genero,`fecha_nacimiento`=fecha_nacimiento,`parentesco`=parentesco WHERE `identificacion`=identificacion;
+
+
+
+CREATE PROCEDURE registro_niño(idenficacion varchar(255), nombre varchar(255), apellido varchar(255), genero varchar(255), fecha_nacimiento date, parentesco_acudiente varchar(255), cedula_acudiente varchar(255),codigo_gurpo varchar(255)) 
+INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`, `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,now()-fecha_nacimiento,genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1);
+
+
+
+
+
+
+

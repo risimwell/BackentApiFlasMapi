@@ -1,8 +1,8 @@
 CREATE DATABASE mapi;
 USE mapi;
-CREATE TABLE acudiente
+CREATE TABLE acudientes
 (
-  cedula_acudiente INT NOT NULL,
+  cedula_acudiente VARCHAR(100) NOT NULL,
   nombre VARCHAR(100) NOT NULL,
   apellido VARCHAR(100) NOT NULL,
   telefono VARCHAR(100) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE acudiente
 
 CREATE TABLE docente
 (
-  cedula_acudiente VARCHAR(100) NOT NULL,
+  cedula_docente VARCHAR(100) NOT NULL,
   nombre VARCHAR(100) NOT NULL,
   apellido VARCHAR(100) NOT NULL,
   telefono VARCHAR(100) NOT NULL,
@@ -33,29 +33,32 @@ CREATE TABLE anuncio
   PRIMARY KEY (codigo_anuncio)
 );
 
+CREATE TABLE grupo
+(
+  codigo_grupo VARCHAR(100) NOT NULL,
+  nombre_institucion VARCHAR(100) NOT NULL,
+  fecha_creacion DATE NOT NULL,
+  codigo_anuncio VARCHAR(100) NOT NULL,
+  cedula_docente VARCHAR(100) NOT NULL,
+  PRIMARY KEY (codigo_grupo),
+  FOREIGN KEY (codigo_anuncio) REFERENCES anuncio(codigo_anuncio),
+  FOREIGN KEY (cedula_acudiente) REFERENCES docente(cedula_acudiente),
+  
+);
+
 CREATE TABLE niño
 (
   identificacion VARCHAR(100) NOT NULL,
   nombre VARCHAR(100) NOT NULL,
   apellido VARCHAR(100) NOT NULL,
+  edad INT NOT NULL,
   genero VARCHAR(100) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
-  cedula_acudiente INT NOT NULL,
-  parentesco VARCHAR(100) NOT NULL,
+  parentesco_acudiente VARCHAR(100) NOT NULL,
+  cedula_acudiente VARCHAR(100) NOT NULL,
+  codigo_grupo VARCHAR(100) NOT NULL,
   PRIMARY KEY (identificacion),
   FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente)
+  FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo_grupo)
 );
 
-CREATE TABLE salon
-(
-  codigo_salon VARCHAR(100) NOT NULL,
-  nombre_institucion VARCHAR(100) NOT NULL,
-  fecha_creacion DATE NOT NULL,
-  cedula_acudiente VARCHAR(100) NOT NULL,
-  codigo_anuncio VARCHAR(100) NOT NULL,
-  identificacion_niños VARCHAR(100) NOT NULL,
-  PRIMARY KEY (codigo_salon),
-  FOREIGN KEY (cedula_acudiente) REFERENCES docente(cedula_acudiente),
-  FOREIGN KEY (codigo_anuncio) REFERENCES anuncio(codigo_anuncio),
-  FOREIGN KEY (identificacion_niños) REFERENCES niño(identificacion)
-);
