@@ -1,7 +1,8 @@
-import { Crearacudiente,Objetoacudiente } from './../../Modelos/Acudiente/Acudiente';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { Crearnino,Objetonino } from 'src/app/Modelos/Nino/nino';
 
 
 const baseUrl = 'http://127.0.0.1:5000';
@@ -20,18 +21,18 @@ export class NinoService {
      return this.http.get(baseUrl,{headers:header})
    }
 
-   getAll(): Observable<Objetoacudiente[]> {
-     return this.http.get<Objetoacudiente[]>(baseUrl);
+   getAll(): Observable<Objetonino[]> {
+     return this.http.get<Objetonino[]>(baseUrl);
    }
 
    get(id: any): Observable<any> {
      return this.http.get(`${baseUrl}/${id}`);
    }
 
-   create(data: Crearacudiente): Observable<any> {
+   create(data: Crearnino): Observable<any> {
      console.log(data);
-     console.log(this.http.post(`${baseUrl}/registroacudiente`, data))
-     return this.http.post(`${baseUrl}/registroacudiente`, data);
+     console.log(this.http.post(`${baseUrl}/registronino`, data))
+     return this.http.post(`${baseUrl}/registronino`, data);
    }
 
    update(id: any, data: any): Observable<any> {

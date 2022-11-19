@@ -102,7 +102,7 @@ def registrar_docente():
 
 #CRUD ninos
 @app.route('/registronino', methods=['POST'])
-def registrar_nino():
+def registrar_nino(): 
     try:
         if registro_nino(request):
             return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200

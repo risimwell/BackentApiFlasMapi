@@ -36,8 +36,8 @@ export class NinosComponent implements OnInit {
   }
 
   Registrar_nino(form:any){
-    console.log("Esta entrando aca");
-  const nino: Crearnino={
+    console.log("Esta entrando a la funcion");
+    const nino: Crearnino={
         identificacion:form.identificacion,
         nombre:form.nombre,
         apellido:form.apellido,
@@ -48,9 +48,22 @@ export class NinosComponent implements OnInit {
         grupo:form.grupo
 
     }
-    console.log(this.obtenerData.obtenerCedula())
+    console.log("Va a disparar el servicio");
+    this.servicio_nino.create(nino).subscribe({
+      next: () => {
+        //Alert de confirmacion
+        alert("Niño registrado correctamente")
+        //Redireccion a la pagina
+        this.router.navigateByUrl('panelacudiente')
 
-    console.log("si manda datos desde el componenete principal")
+      },
+      error: () => {
+        // Si hubo un error dentro del registro del usuario
+        alert("No se pudo realizar el registro\nVerifique e intente de nuevo")
+      }
+    }
+  );
+  console.log(this.obtenerData.obtenerCedula())
   }
 
 }
