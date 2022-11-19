@@ -11,17 +11,41 @@ CREATE PROCEDURE eliminar_acudiente(cedula_acudiente varchar(255))
 DELETE FROM `acudiente` WHERE `cedula_acudiente`=cedula_acudiente
 
 
+CREATE PROCEDURE actulizar_clave_acudiente(clave varchar(100),cedula_acudiente varchar(100)) 
+UPDATE `acudiente` SET `clave`=clave WHERE `cedula_acudiente`=cedula_acudiente
+
+
+CREATE PROCEDURE listar_acudientes() 
+SELECT * FROM `acudiente`
+
+
+CREATE PROCEDURE listar_acudiente(cedula_acudiente varchar(100)) 
+SELECT * FROM `acudiente`  WHERE `cedula_acudiente`=cedula_acudiente
+
+
+
 -------------------Niño-----------------------------------------------------------------
-CREATE PROCEDURE actualizar_informacion_niño(nombre varchar(255), apellido varchar(255), genero varchar(255),fecha_nacimiento date,parentesco varchar(255)) 
-UPDATE `niño` SET `nombre`=nombre,`apellido`=apellido,`genero`=genero,`fecha_nacimiento`=fecha_nacimiento,`parentesco`=parentesco WHERE `identificacion`=identificacion;
-
-
-
 CREATE PROCEDURE registro_niño(idenficacion varchar(255), nombre varchar(255), apellido varchar(255), genero varchar(255), fecha_nacimiento date, parentesco_acudiente varchar(255), cedula_acudiente varchar(255),codigo_gurpo varchar(255)) 
 INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`, `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,now()-fecha_nacimiento,genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1);
 
 
+CREATE PROCEDURE actualizar_informacion_niño(nombre varchar(255), apellido varchar(255), genero varchar(255),fecha_nacimiento date,parentesco varchar(255)) 
+UPDATE `niño` SET `nombre`=nombre,`apellido`=apellido,`genero`=genero,`fecha_nacimiento`=fecha_nacimiento,`parentesco`=parentesco WHERE `identificacion`=identificacion;
 
+
+CREATE PROCEDURE eliminar_niño(identificacion varchar(100))
+DELETE FROM `niño` WHERE `identificacion`=identificacion
+
+CREATE PROCEDURE deshabilitar_estado_niño(identificacion varchar(100)) 
+UPDATE `niño` SET `estado`=0 WHERE `identificacion`=identificacion;
+
+
+CREATE PROCEDURE listar_niños() 
+SELECT * FROM `niño`;
+
+
+CREATE PROCEDURE listar_niño(identificacion varchar(100)) 
+SELECT * FROM `niño`  WHERE `identificacion`=identificacion;
 
 
 

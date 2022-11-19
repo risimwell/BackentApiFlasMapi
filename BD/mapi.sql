@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2022 a las 17:19:17
+-- Tiempo de generación: 19-11-2022 a las 17:47:46
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -29,9 +29,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_informacion_niño` (`nom
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_informacio_acudiente` (IN `cedula_acudiente` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `telefono` VARCHAR(255), IN `telefono_2` VARCHAR(255), IN `acudiente_alternativo` VARCHAR(255))   UPDATE `acudiente` SET `nombre`=nombre,`apellido`=apellido,`telefono`=telefono,`telefono_2`=telefono_2,`acudiente_alternativo`=acudiente_alternativo WHERE `cedula_acudiente`=cedula_acudiente$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actulizar_clave_acudiente` (`clave` VARCHAR(100), `cedula_acudiente` VARCHAR(100))   UPDATE `acudiente` SET `clave`=clave WHERE `cedula_acudiente`=cedula_acudiente$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deshabilitar_estado_niño` (`identificacion` VARCHAR(100))   UPDATE `niño` SET `estado`=0 WHERE `identificacion`=identificacion$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_acudiente` (`cedula_acudiente` VARCHAR(255))   DELETE FROM `acudiente` WHERE `cedula_acudiente`=cedula_acudiente$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudiente` ()   SELECT * FROM `acudiente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_niño` (`identificacion` VARCHAR(100))   DELETE FROM `niño` WHERE `identificacion`=identificacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudiente` (`cedula_acudiente` VARCHAR(100))   SELECT * FROM `acudiente`  WHERE `cedula_acudiente`=cedula_acudiente$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudientes` ()   SELECT * FROM `acudiente`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niño` (`identificacion` VARCHAR(100))   SELECT * FROM `niño`  WHERE `identificacion`=identificacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niños` ()   SELECT * FROM `niño`$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_niño` (IN `identificacion` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `edad` INT(255), IN `genero` VARCHAR(255), IN `fecha_nacimiento` DATE, IN `parentesco_acudiente` VARCHAR(255))   INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`,  `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,edad,genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1)$$
 
@@ -130,7 +142,8 @@ CREATE TABLE `niño` (
   `fecha_nacimiento` date NOT NULL,
   `parentesco_acudiente` varchar(100) NOT NULL,
   `cedula_acudiente` varchar(100) NOT NULL,
-  `codigo_grupo` varchar(100) NOT NULL
+  `codigo_grupo` varchar(100) NOT NULL,
+  `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
