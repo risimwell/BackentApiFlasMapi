@@ -22,7 +22,7 @@
                   <div class="form-group">
                     <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                       <div class="col-md-8">
-                        <input type="email" class="form-control" name="identificacion" formControlName="identificacion" id="identificacion" placeholder="Numero Identidad">
+                        <input type="text" class="form-control" name="identificacion" formControlName="identificacion" id="identificacion" placeholder="Numero Identidad">
                       </div>
                   </div>
                 </div>
@@ -33,7 +33,7 @@
                   <div class="form-group">
                     <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                     <div class="col-md-8">
-                      <input type="password" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre">
+                      <input type="text" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre">
                     </div>
                   </div>
                 </div>
@@ -42,34 +42,35 @@
                   <div class="form-group">
                       <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                       <div class="col-md-8">
-                        <input type="password" class="form-control" name="apellido" formControlName="apellido" id="apellido" placeholder="Apellido">
+                        <input type="text" class="form-control" name="apellido" formControlName="apellido" id="apellido" placeholder="Apellido">
                       </div>
                   </div>
                 </div>
               </div>
               <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <!-- Campo de genero -->
+                  <div class="form-group">
+                    <div class="col-md-8">
+                      <label for="genero">Genero</label>
+                      <select class="form-control" name="genero" formControlName="genero" id="genero" >
+                        <option selected value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <!-- Campo de fechanacimiento -->
                         <div class="form-group">
                           <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                           <div class="col-md-8">
                             <label for="fechanacimiento">Fecha de nacimiento</label>
-                            <input type="date" class="form-control" name="fechanacimiento" formControlName="fechanacimiento" id="fechanacimiento">
+                            <input type="date" class="form-control" name="fecha_nacimiento" formControlName="fecha_nacimiento" id="fecha_nacimiento">
                           </div>
                         </div>
                   </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de genero -->
-                    <div class="form-group">
-                      <div class="col-md-8">
-                        <label for="genero">Genero</label>
-                        <select class="form-control" name="genero" formControlName="genero" id="genero" >
-                          <option selected value="femenino">Femenino</option>
-                          <option value="masculino">Masculino</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+
               </div>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -77,7 +78,19 @@
                   <div class="form-group">
                     <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
                     <div class="col-md-8">
-                      <input type="password" class="form-control" name="parentesco" formControlName="parentesco" id="parentesco" placeholder="Prentesco">
+                      <input type="text" class="form-control" name="parentesco_acudiente" formControlName="parentesco_acudiente" id="parentesco_acudiente" placeholder="Prentesco del acudiente">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <!-- Campo de codigo grupo -->
+                  <div class="form-group">
+                    <div class="col-md-8">
+                      <label for="genero">Grupo</label>
+                      <select class="form-control" name="grupo" formControlName="grupo" id="grupo" >
+                        <option selected value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                      </select>
                     </div>
                   </div>
                 </div>

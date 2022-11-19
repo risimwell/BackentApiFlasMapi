@@ -5,8 +5,10 @@ export interface Objetonino{
   edad:String;
   genero:String;
   fecha_nacimiento:Date;
-  parentesco:String;
+  parentesco_acudiente:String;
   cedula_acudiente:String;
+  codigo_grupo:String;
+  estado:BigInteger;
 }
 
 export interface Crearnino{
@@ -15,8 +17,9 @@ export interface Crearnino{
   apellido:String;
   genero:String;
   fecha_nacimiento:Date;
-  parentesco:String;
-  
+  parentesco_acudiente:String;
+  cedula_acudiente:String;
+  grupo:String;
 }
 
 

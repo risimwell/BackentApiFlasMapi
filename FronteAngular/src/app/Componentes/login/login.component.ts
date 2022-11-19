@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
 
 import { LoginService } from 'src/app/Servicios/login/login.service';
+import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,12 @@ export class LoginComponent implements OnInit {
 
   formulario:FormGroup;
   usuario:any=""
-  pollito:any=""
-  public nombre:any=""
-  constructor(public formularios:FormBuilder,private loginService:LoginService, private router:Router) {
+  nombre:any=""
+  constructor(public formularios:FormBuilder,private loginService:LoginService,private envioData:EnvioDataService, private router:Router) {
       this.formulario=this.formularios.group({
         cedula:[''],
         clave:[''],
       });
-      this.pollito="este es el nombre";
 
      }
 
@@ -38,6 +37,8 @@ export class LoginComponent implements OnInit {
           this.nombre=data.nombre
           if(this.usuario=="acudiente"){
             this.router.navigateByUrl('panelacudiente')
+            console.log(data.cedula)
+            this.envioData.envioCedula(data.cedula)
           }else{
             if(this.usuario=="docente") {
               this.router.navigateByUrl('paneldocente')
@@ -53,5 +54,7 @@ export class LoginComponent implements OnInit {
 
       }
     )
+
   }
+
 }

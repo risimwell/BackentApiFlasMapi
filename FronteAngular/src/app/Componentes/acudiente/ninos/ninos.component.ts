@@ -7,6 +7,8 @@ import { Router } from "@angular/router";
 import { Objetonino, Crearnino } from './../../../Modelos/Nino/nino';
 //Servicios
 import { NinoService } from './../../../Servicios/nino/nino.service';
+import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service';
+
 
 @Component({
   selector: 'app-ninos',
@@ -18,45 +20,35 @@ export class NinosComponent implements OnInit {
   //Capturar datos del formulario
   formulario_nino =new FormGroup({
     identificacion: new FormControl('',Validators.required),
-    nombre_nino: new FormControl('',Validators.required),
-    apellido_nino: new FormControl('',Validators.required),
+    nombre: new FormControl('',Validators.required),
+    apellido: new FormControl('',Validators.required),
     genero: new FormControl('',Validators.required),
     fecha_nacimiento: new FormControl('',Validators.required),
-    parentesco: new FormControl('',Validators.required)
+    parentesco_acudiente: new FormControl('',Validators.required),
+    grupo: new FormControl('',Validators.required)
   })
   //Objeto
   nino: Objetonino[]=[];
 
-  constructor(private servicio_nino:NinoService,private formBuilder:FormBuilder,private router:Router) { }
+  constructor(private servicio_nino:NinoService,private obtenerData:EnvioDataService,private formBuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
   }
 
   Registrar_nino(form:any){
     console.log("Esta entrando aca");
-<<<<<<< Updated upstream
   const nino: Crearnino={
         identificacion:form.identificacion,
         nombre:form.nombre,
         apellido:form.apellido,
-        fecha_nacimiento:form.fechanacimiento,
         genero:form.genero,
-        parentesco:form.parentesco
-=======
-    const nino: Objetonino={
-      identificacion: form.identificacion,
-      nombre: form.nombre,
-      apellido: form.apellido,
-      fecha_nacimiento: form.fechanacimiento,
-      genero: form.genero,
-      parentesco: form.parentesco,
-      edad: form.edad,
-      cedula_acudiente:form.cedula_acudiente
->>>>>>> Stashed changes
-    }
-    this.servicio_nino.create
+        fecha_nacimiento:form.fechanacimiento,
+        parentesco_acudiente:form.parentesco,
+        cedula_acudiente:this.obtenerData.obtenerCedula(),
+        grupo:form.grupo
 
-    
+    }
+    console.log(this.obtenerData.obtenerCedula())
 
     console.log("si manda datos desde el componenete principal")
   }

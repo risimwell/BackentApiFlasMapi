@@ -1,5 +1,3 @@
-from datetime import date
-from datetime import datetime
 from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
@@ -105,26 +103,14 @@ def registrar_docente():
 #CRUD ninos
 @app.route('/registronino', methods=['POST'])
 def registrar_nino():
-        try:
-            cursor = conexion.connection.cursor()
-            nacimiento= request.json['fecha_nacimiento']
-            print(nacimiento)
-            ahora = datetime.strptime(nacimiento, '%Y-%m-%d')
-            now = datetime.now()
-            print(ahora)
-            edad=now-ahora
-            edad=edad/365
-            print(edad)
-            sql = "CALL crear_nino('{0}', '{1}', '{2}', '{3}','{4}', '{5}','{6}')".format(request.json['identificacion'],request.json['nombre'],request.json['apellido'],edad,request.json['genero'],request.json['fecha_nacimiento'],request.json['parentesco'])
-            print("codigo sql", sql)
-            # Ejecutar la sentencia SQL
-            cursor.execute(sql)
-            # Aceptar la sentencia SQL
-            conexion.connection.commit()  # Confirma la acción de inserción.
-            return jsonify({'mensaje': "niño registrado.", 'exito': True}), 200
-        except Exception as ex:
+    try:
+        if registro_nino(request):
+            return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200
+        else:
+            return jsonify({'mensaje': "No se pudo realizar el registro", 'exito': False}), 400
+    except Exception as ex:
             print(ex)
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
 # @cross_origin
