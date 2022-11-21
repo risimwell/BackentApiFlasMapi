@@ -42,10 +42,10 @@ export class NinosComponent implements OnInit {
         nombre:form.nombre,
         apellido:form.apellido,
         genero:form.genero,
-        fecha_nacimiento:form.fechanacimiento,
+        fecha_nacimiento:form.fecha_nacimiento,
         parentesco_acudiente:form.parentesco_acudiente,
         cedula_acudiente:this.obtenerData.obtenerCedula(),
-        grupo:form.grupo
+        codigo_grupo:form.grupo
 
     }
     console.log("Va a disparar el servicio");

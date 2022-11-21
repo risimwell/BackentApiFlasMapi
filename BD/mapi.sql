@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-11-2022 a las 17:47:46
+-- Tiempo de generación: 21-11-2022 a las 12:37:06
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -45,11 +45,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niño` (`identificacion` VAR
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niños` ()   SELECT * FROM `niño`$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_niño` (IN `identificacion` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `edad` INT(255), IN `genero` VARCHAR(255), IN `fecha_nacimiento` DATE, IN `parentesco_acudiente` VARCHAR(255))   INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`,  `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,edad,genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1)$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_acudiente` (`cedula_acudiente` VARCHAR(255), `nombre` VARCHAR(255), `apellido` VARCHAR(255), `telefono` VARCHAR(255), `clave` VARCHAR(255))   INSERT INTO `acudiente`(`cedula_acudiente`, `nombre`, `apellido`, `telefono`, `clave`) VALUES (cedula_acudiente,nombre,apellido,telefono,clave)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_niño` (IN `idenficacion` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `genero` VARCHAR(255), IN `fecha_nacimiento` DATE, IN `parentesco_acudiente` VARCHAR(255), IN `cedula_acudiente` VARCHAR(255), IN `codigo_gurpo` VARCHAR(255))   INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`,  `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,fecha_nacimiento-now(),genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1)$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_niño` (`identificacion` VARCHAR(255), `nombre` VARCHAR(255), `apellido` VARCHAR(255), `edad` INT(50), `genero` VARCHAR(255), `fecha_nacimiento` DATE, `parentesco_acudiente` VARCHAR(255), `cedula_acudiente` VARCHAR(255), `codigo_grupo` VARCHAR(255))   INSERT INTO `niño`(`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`, `parentesco_acudiente`,`cedula_acudiente`,`codigo_grupo`,`estado`) VALUES (identificacion,nombre,apellido,edad,genero,fecha_nacimiento,parentesco_acudiente,cedula_acudiente,codigo_grupo,1)$$
 
 DELIMITER ;
 
@@ -69,6 +67,13 @@ CREATE TABLE `acudiente` (
   `teléfono_alternativo` varchar(100) DEFAULT NULL,
   `clave` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `acudiente`
+--
+
+INSERT INTO `acudiente` (`cedula_acudiente`, `nombre`, `apellido`, `telefono`, `telefono_2`, `acudiente_alternativo`, `teléfono_alternativo`, `clave`) VALUES
+('1', '1', '1', '1', NULL, NULL, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -141,10 +146,20 @@ CREATE TABLE `niño` (
   `genero` varchar(100) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `parentesco_acudiente` varchar(100) NOT NULL,
-  `cedula_acudiente` varchar(100) NOT NULL,
-  `codigo_grupo` varchar(100) NOT NULL,
+  `cedula_acudiente` varchar(100) DEFAULT NULL,
+  `codigo_grupo` varchar(100) DEFAULT NULL,
   `estado` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `niño`
+--
+
+INSERT INTO `niño` (`identificacion`, `nombre`, `apellido`, `edad`, `genero`, `fecha_nacimiento`, `parentesco_acudiente`, `cedula_acudiente`, `codigo_grupo`, `estado`) VALUES
+('1', '1', '1', 12, 'femenino', '2010-01-01', 'padre', '1', '1', 1),
+('2', '2', '22', 22, 'maculino', '2022-11-01', 'padre', '1', '1', 1),
+('3', '2', '22', 22, 'maculino', '2022-11-01', 'padre', '1', '1', 1),
+('4', '4', '4', 12, 'femenino', '2010-01-01', 'tio', '1', '1', 1);
 
 --
 -- Índices para tablas volcadas

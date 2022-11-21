@@ -55,11 +55,11 @@ CREATE TABLE niño
   genero VARCHAR(100) NOT NULL,
   fecha_nacimiento DATE NOT NULL,
   parentesco_acudiente VARCHAR(100) NOT NULL,
-  cedula_acudiente VARCHAR(100) NOT NULL,
-  codigo_grupo VARCHAR(100) NOT NULL,
+  cedula_acudiente VARCHAR(100) ,
+  codigo_grupo VARCHAR(100),
   estado INT(1)	 NOT NULL,
   PRIMARY KEY (identificacion),
-  FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente)
+  FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente),
   FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo_grupo)
 );
 

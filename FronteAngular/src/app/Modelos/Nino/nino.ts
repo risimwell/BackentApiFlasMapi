@@ -16,10 +16,10 @@ export interface Crearnino{
   nombre:String;
   apellido:String;
   genero:String;
-  fecha_nacimiento:Date;
+  fecha_nacimiento:String;
   parentesco_acudiente:String;
   cedula_acudiente:String;
-  grupo:String;
+  codigo_grupo:String;
 }
 
 

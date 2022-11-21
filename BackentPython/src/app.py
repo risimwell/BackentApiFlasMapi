@@ -104,6 +104,7 @@ def registrar_docente():
 @app.route('/registronino', methods=['POST'])
 def registrar_nino(): 
     try:
+        
         if registro_nino(request):
             return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200
         else:
