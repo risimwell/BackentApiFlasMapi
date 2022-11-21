@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2022 a las 12:37:06
+-- Tiempo de generación: 21-11-2022 a las 14:46:44
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -118,6 +118,7 @@ INSERT INTO `docente` (`cedula_docente`, `nombre`, `apellido`, `telefono`, `inst
 --
 
 CREATE TABLE `grupo` (
+  `Nombre_Grupo` varchar(100) NOT NULL,
   `codigo_grupo` varchar(255) NOT NULL,
   `nombre_Insitucion` varchar(255) NOT NULL,
   `fecha_creacion` date NOT NULL,
@@ -129,8 +130,8 @@ CREATE TABLE `grupo` (
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `codigo_anuncio`, `cedula_docente`) VALUES
-('1', 'mapi', '2020-03-10', NULL, '2');
+INSERT INTO `grupo` (`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `codigo_anuncio`, `cedula_docente`) VALUES
+('', '1', 'mapi', '2020-03-10', NULL, '2');
 
 -- --------------------------------------------------------
 
