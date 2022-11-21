@@ -3,9 +3,15 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 21-11-2022 a las 12:37:06
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
+=======
+-- Tiempo de generación: 19-11-2022 a las 20:55:48
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
+>>>>>>> df5942d411f509d45a801611f48bd5e6f93bccdf
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -118,6 +124,7 @@ INSERT INTO `docente` (`cedula_docente`, `nombre`, `apellido`, `telefono`, `inst
 --
 
 CREATE TABLE `grupo` (
+  `Nombre_del_Grupo` varchar(100) NOT NULL,
   `codigo_grupo` varchar(255) NOT NULL,
   `nombre_Insitucion` varchar(255) NOT NULL,
   `fecha_creacion` date NOT NULL,
@@ -129,8 +136,8 @@ CREATE TABLE `grupo` (
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `codigo_anuncio`, `cedula_docente`) VALUES
-('1', 'mapi', '2020-03-10', NULL, '2');
+INSERT INTO `grupo` (`Nombre_del_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `codigo_anuncio`, `cedula_docente`) VALUES
+('', '1', 'mapi', '2020-03-10', NULL, '2');
 
 -- --------------------------------------------------------
 
@@ -208,7 +215,7 @@ ALTER TABLE `niño`
 --
 ALTER TABLE `grupo`
   ADD CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`codigo_anuncio`) REFERENCES `anuncio` (`codigo_anuncio`),
-  ADD CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`Cedula_Docente`) REFERENCES `docente` (`cedula_docente`),
+  ADD CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`cedula_docente`) REFERENCES `docente` (`cedula_docente`),
   ADD CONSTRAINT `grupo_ibfk_3` FOREIGN KEY (`cedula_docente`) REFERENCES `docente` (`cedula_docente`),
   ADD CONSTRAINT `grupo_ibfk_4` FOREIGN KEY (`codigo_anuncio`) REFERENCES `anuncio` (`codigo_anuncio`);
 

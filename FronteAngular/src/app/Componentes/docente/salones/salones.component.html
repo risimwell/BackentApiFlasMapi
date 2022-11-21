@@ -1,89 +1,98 @@
 
-<div class="row">
-    <!-- Card para mostrar los niños registrados -->
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-     <div class="card">
-      <div class="card-body">
-        <h1>Aca Listo el Grupo</h1>
-      </div>
-     </div>
-    </div>
-  
-    <!-- Card para agregar los niños -->
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-             
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de identificacion -->
-                    <div class="form-group">
-                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                        <div class="col-md-8">
-                          <input type="email" class="form-control" name="identificacion" formControlName="identificacion" id="identificacion" placeholder="Codigo Salon">
-                        </div>
-                    </div>
+
+<div class="col-md-3">
+
+  <table class="table table-light">Aca Listo Estudiantes
+    <tbody>
+      <tr>
+        <td></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>listas</th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="input-group">
+    <span class="input-group-btn">
+      <button class="btn btn-secondary" type="button" aria-label="">Listar Cursos</button>
+    </span>
+    <input type="text" class="form-control" name="name" id="name" placeholder="" aria-label="">
+  </div>
+</div>
+
+
+              <!-- Campo de nombre del Grupo-->
+                 <div class="form-group">
+                  <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                  <div class="col-md-3">
+                    <input type="text" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre del Grupo">
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de nombre -->
+
+
+                    <!-- Campo Codidgo del Salon-->
                     <div class="form-group">
                       <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                      <div class="col-md-10">
-                        <input type="password" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre de la Institucion">
-                      </div>
+                        <div class="col-md-3">
+                          <input type="text" class="form-control" name="identificacion" formControlName="identificacion" id="identificacion" placeholder="Codigo Salon">
+                        </div>
+                    </div>
+
+
+
+                   <!-- Campo de nombre -->
+                   <div class="form-group">
+                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre de la Institcion">
                     </div>
                   </div>
-                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de apellido -->
-                    
-                        <!-- Campo de fechanacimiento -->
+
+
+                        <!-- Campo de fecha  de Creacion -->
+
                         <div class="form-group">
                           <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                          <div class="col-md-10">
-                            <input type="password" class="form-control" name="nombre" formControlName="nombre" id="nombre" placeholder="Nombre de la Institucion">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                          <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                          <div class="col-md-10">
+                          <div class="col-md-3">
                               <label for="fechanacimiento">Fecha de Creacion</label>
                               <input type="date" class="form-control" name="fechanacimiento" formControlName="fechanacimiento" id="fechanacimiento">
                             </div>
                           </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                      <!-- Campo de genero -->
-                    
-                    <!-- Campo de parentesco -->
+
+
+                      <div class="col-md-3"></div>
+
+                    <!-- Codigo de Anuncio-->
                     <div class="form-group">
                       <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                      <div class="col-md-8">
-                        <input type="password" class="form-control" name="parentesco" formControlName="parentesco" id="parentesco" placeholder="Prentesco">
+                      <div class="col-md-3">
+                        <input type="password" class="form-control" name="parentesco" formControlName="parentesco" id="parentesco" placeholder="Codigo de Anuncio">
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+
+                     <!-- Cedula Docente-->
+                     <div class="form-group">
+                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                      <div class="col-md-3">
+                        <input type="password" class="form-control" name="parentesco" formControlName="parentesco" id="parentesco" placeholder="Cedula Docente">
+                      </div>
+                    </div>
+
+
                     <!-- Boton -->
                     <div class="form-group">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                         <button type="submit" class="btn btn-dark" >Registrar Grupo</button>
                       </div>
                     </div>
-                </div>
-                </div>
-             
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
+
+
+
+
+
