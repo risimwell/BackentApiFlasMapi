@@ -98,7 +98,22 @@ def registrar_docente():
         except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
-
+#registro de grupos
+@app.route('/registrogrupo', methods=['POST'])
+def registrar_grupo():
+        try:
+            cursor = conexion.connection.cursor()
+            sql = """INSERT INTO grupo (Nombre_Grupo,codigo_grupo, nombre_Insitucion, fecha_creacion,codigo_anuncio, cedula_docente) 
+            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['nombre_grupo'],request.json['codigo_grupo'],request.json['nombre_institucion'],request.json['fecha_creacion'],request.json['codigo_anuncio'],request.json['cedula_docente'])
+            print("codigo sql", sql)
+            # Ejecutar la sentencia SQL
+            cursor.execute(sql)
+            # Aceptar la sentencia SQL
+            conexion.connection.commit()  # Confirma la acción de inserción.
+            return jsonify({'mensaje': "Grupo Registrado.", 'exito': True}), 200
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
 
 #CRUD ninos
 @app.route('/registronino', methods=['POST'])

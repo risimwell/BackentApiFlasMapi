@@ -19,9 +19,9 @@ export class SalonesComponent implements OnInit {
   formulario_grupos = new FormGroup({
 
     nombre_grupo: new FormControl ('',Validators.required),
-    codigo_salon: new FormControl('',Validators.required),
+    codigo_grupo: new FormControl('',Validators.required),
     nombre_institucion: new FormControl('',Validators.required),
-    fecha_craacion: new FormControl('',Validators.required),
+    fecha_creacion: new FormControl('',Validators.required),
     codigo_anuncio: new FormControl('',Validators.required),
     cedula_docente: new FormControl('',Validators.required),
     grupo: new FormControl('',Validators.required)
@@ -36,17 +36,17 @@ export class SalonesComponent implements OnInit {
 
 
   }
-  regitrar_grupo (Form:any){
+  Registrar_grupo (form:any){
     console.log("Estoy adentro de regitrar grupo")
     const grupo: Creargrupo={
 
-      nombre_grupo:Form.identificacion,
-      codigo_grupo:Form.codigo_grupo,
-      nombre_institucion: Form.nombreinstitucion,
-      fecha_creacion:Form.fecha_creacion,
-      codigo_anuncio:Form.codigo_anuncio,
-      cedula_docente:Form.cedula_docente,
-      grupo:Form.grupo
+      nombre_grupo:form.nombre_grupo,
+      codigo_grupo:form.codigo_grupo,
+      nombre_institucion: form.nombre_institucion,
+      fecha_creacion:form.fecha_creacion,
+      codigo_anuncio:form.codigo_anuncio,
+      cedula_docente:form.cedula_docente,
+     
 
     }
 

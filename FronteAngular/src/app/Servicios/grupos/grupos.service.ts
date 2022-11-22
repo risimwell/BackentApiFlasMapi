@@ -28,8 +28,8 @@ export class GruposService {
 
   create(data: Creargrupo): Observable<any> {
     console.log(data);
-    console.log(this.http.post(`${baseUrl}/registronino`, data))
-    return this.http.post(`${baseUrl}/registronino`, data);
+    console.log(this.http.post(`${baseUrl}/registrogrupo`, data))
+    return this.http.post(`${baseUrl}/registrogrupo`, data);
   }
 
   update(id: any, data: any): Observable<any> {

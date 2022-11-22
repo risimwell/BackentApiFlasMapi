@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-11-2022 a las 14:46:44
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 22-11-2022 a las 15:56:51
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88,6 +88,13 @@ CREATE TABLE `anuncio` (
   `multimedia` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `anuncio`
+--
+
+INSERT INTO `anuncio` (`codigo_anuncio`, `descripcion`, `fecha_creacion`, `multimedia`) VALUES
+('222', 'hika', '2022-11-22', 'nada');
+
 -- --------------------------------------------------------
 
 --
@@ -114,24 +121,16 @@ INSERT INTO `docente` (`cedula_docente`, `nombre`, `apellido`, `telefono`, `inst
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grupo`
+-- Estructura de tabla para la tabla `grupos`
 --
 
-CREATE TABLE `grupo` (
+CREATE TABLE `grupos` (
   `Nombre_Grupo` varchar(100) NOT NULL,
   `codigo_grupo` varchar(255) NOT NULL,
   `nombre_Insitucion` varchar(255) NOT NULL,
   `fecha_creacion` date NOT NULL,
-  `codigo_anuncio` varchar(255) DEFAULT NULL,
   `cedula_docente` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `grupo`
---
-
-INSERT INTO `grupo` (`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `codigo_anuncio`, `cedula_docente`) VALUES
-('', '1', 'mapi', '2020-03-10', NULL, '2');
 
 -- --------------------------------------------------------
 
@@ -185,12 +184,11 @@ ALTER TABLE `docente`
   ADD PRIMARY KEY (`cedula_docente`);
 
 --
--- Indices de la tabla `grupo`
+-- Indices de la tabla `grupos`
 --
-ALTER TABLE `grupo`
+ALTER TABLE `grupos`
   ADD PRIMARY KEY (`codigo_grupo`),
-  ADD KEY `Codigo_Anuncio` (`codigo_anuncio`),
-  ADD KEY `Cedula_Docente` (`cedula_docente`);
+  ADD KEY `cedula_docente` (`cedula_docente`);
 
 --
 -- Indices de la tabla `niño`
@@ -205,13 +203,10 @@ ALTER TABLE `niño`
 --
 
 --
--- Filtros para la tabla `grupo`
+-- Filtros para la tabla `grupos`
 --
-ALTER TABLE `grupo`
-  ADD CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`codigo_anuncio`) REFERENCES `anuncio` (`codigo_anuncio`),
-  ADD CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`Cedula_Docente`) REFERENCES `docente` (`cedula_docente`),
-  ADD CONSTRAINT `grupo_ibfk_3` FOREIGN KEY (`cedula_docente`) REFERENCES `docente` (`cedula_docente`),
-  ADD CONSTRAINT `grupo_ibfk_4` FOREIGN KEY (`codigo_anuncio`) REFERENCES `anuncio` (`codigo_anuncio`);
+ALTER TABLE `grupos`
+  ADD CONSTRAINT `grupos_ibfk_1` FOREIGN KEY (`cedula_docente`) REFERENCES `docente` (`cedula_docente`);
 
 --
 -- Filtros para la tabla `niño`

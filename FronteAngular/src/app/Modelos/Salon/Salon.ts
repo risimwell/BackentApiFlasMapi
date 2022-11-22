@@ -16,9 +16,9 @@ export interface Creargrupo{
   nombre_grupo:String;
   codigo_grupo:String;
   nombre_institucion:String;
-  fecha_creacion:Data;
+  fecha_creacion:String;
   codigo_anuncio:String;
   cedula_docente:String;
-  grupo:String;
+  
 
 }
