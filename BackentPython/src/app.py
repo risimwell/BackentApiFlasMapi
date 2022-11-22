@@ -1,45 +1,33 @@
+#IMPORTACIO METODOS PROPIOS PARA QUE FUNCIONE EL API
 from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
 
+#IMPORTACION CONFIGURACION DE LA BASE DE DATOS
 from config import config
-from VALIDACIONES.validaciones import *
+
+
+#IMPORTACION DE LOS METODOS DE CRUD BASICOS
 from CREATE.Regitros import *
+from DELETE.Eliminacion import *
+from SELECT.Listar import *
+from UPDATE.Actulizaciones import *
+from VALIDACIONES.validaciones import *
+
+
 app = Flask(__name__)
+
+def nombre():
+    return app
 
 # CORS(app)
 CORS(app, resources={r"/registro/*": {"origins": "http://localhost:4200"}})
 CORS(app, resources={r"/login/*": {"origins": "http://localhost:4200"}})
-conexion = MySQL(app)
+
+conexion=MySQL(app)
+
 
 #Metodos propios de mapi
-
-@app.route('/acudientes', methods=['GET'])
-def leer_acudientes():
-    try:
-        curso=acudientes()
-        if curso != None:
-            return jsonify({'curso': curso, 'mensaje': "Sin acudientes.", 'exito': True})
-        else:
-            return jsonify({'mensaje': "Curso no encontrado.", 'exito': False})
-    except Exception as ex:
-        return jsonify({'mensaje': "Error", 'exito': False})
-
-
-def acudientes():
-    try:
-        cursor = conexion.connection.cursor()
-        sql = "SELECT * FROM acudiente"
-        cursor.execute(sql)
-        datos = cursor.fetchone()
-        if datos != None:
-            curso = {'cedula_acudiente': datos[0], 'nombre': datos[1], 'apellido': datos[2], 'telefono':datos[3],'telefono_2': datos[4], 'acudiente_alternativo':datos[5],'telefono_alternativo': datos[6], 'clave':datos[7]}
-            return curso
-        else:
-            return None
-    except Exception as ex:
-        raise ex
-
 @app.route('/login', methods=['POST'])
 def iniciar_sesion():
     # Tomo los datos que provienen del JSON
@@ -82,6 +70,21 @@ def registrar_acudiente():
             return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
+@app.route('/listaracudientes', methods=['GET'])
+def listar_acudientes():
+        try:
+            acudientes=acudientes()
+            if acudientes != None:
+                for acudiente in acudientes:
+                    print(acudiente)
+                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
+                return jsonify({'curso': acudiente, 'mensaje': "Sin acudientes.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "Curso no encontrado.", 'exito': False}), 400
+        except Exception as ex:
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
 #CRUD docente
 @app.route('/registrodocente', methods=['POST'])
 def registrar_docente():
@@ -119,7 +122,6 @@ def registrar_grupo():
 @app.route('/registronino', methods=['POST'])
 def registrar_nino(): 
     try:
-        
         if registro_nino(request):
             return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200
         else:

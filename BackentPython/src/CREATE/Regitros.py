@@ -1,6 +1,5 @@
-from datetime import date
-from datetime import datetime
-from CONEXION.Conexion import conectar
+from datetime import datetime, date
+from CONEXION.Conexion import *
 
 conexion=conectar()
 

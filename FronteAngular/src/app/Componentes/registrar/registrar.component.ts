@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
 
+
+
 //Objetos y clases
 import { Objetodocente, Creardocente } from '../../Modelos/Docente/Docente';
 import { Objetoacudiente, Crearacudiente } from '../../Modelos/Acudiente/Acudiente';
 //Servicios
 import { DocenteService } from '../../Servicios/docente/docente.service';
 import {AcudienteService} from '../../Servicios/acudiente/acudiente.service'
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -16,6 +19,7 @@ import {AcudienteService} from '../../Servicios/acudiente/acudiente.service'
   styleUrls: ['./registrar.component.css']
 })
 export class RegistrarComponent implements OnInit {
+
 
   //Declaracion de formularios
   formulario_acudiente =new FormGroup({
@@ -41,6 +45,7 @@ export class RegistrarComponent implements OnInit {
   constructor(private servicio_Acudiente:AcudienteService,private servicio_Docente:DocenteService, private formBuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
+
   }
 
   //Funciones para registrar
@@ -57,7 +62,10 @@ export class RegistrarComponent implements OnInit {
     this.servicio_Acudiente.create(acudiente).subscribe({
         next: () => {
           //Alert de confirmacion
-          alert("Acudiente registrado con exito")
+          Swal.fire(
+            'Acudiente registrado con exito'
+          )
+
           //Redireccion a la pagina
           this.router.navigateByUrl('panelacudiente')
 

@@ -23,7 +23,7 @@ import { NinosComponent } from './Componentes/acudiente/ninos/ninos.component';
 
 const appRoutes:Routes=[
   //Ruta principal
-  {path:'', component: RegistrarComponent},
+  {path:'', component:InicioComponent},
   //Rutas acudiente
   {path:'panelacudiente',component:PanelAcudienteComponent},
   {path:'ninos',component:NinosComponent},
