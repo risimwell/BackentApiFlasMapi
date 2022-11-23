@@ -73,16 +73,40 @@ def registrar_acudiente():
 @app.route('/listaracudientes', methods=['GET'])
 def listar_acudientes():
         try:
-            acudientes=acudientes()
+            acudientes=listar_acudientes()
             if acudientes != None:
                 for acudiente in acudientes:
                     print(acudiente)
                     #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
-                return jsonify({'curso': acudiente, 'mensaje': "Sin acudientes.", 'exito': True}), 200
+                return jsonify({'curso': acudiente, 'mensaje': "Lista de acudientes.", 'exito': True}), 200
             else:
-                return jsonify({'mensaje': "Curso no encontrado.", 'exito': False}), 400
+                return jsonify({'mensaje': "Acudientes no encontrado.", 'exito': False}), 400
         except Exception as ex:
             return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
+@app.route('/actualizaracudiente', methods=['PUT'])
+def actualizar_acudiente():
+        try:
+            if actualizar_acudiente(request):
+                return jsonify({'mensaje': "Acudiente actualizado.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "No se pudo realizar la actualizacion", 'exito': False}), 400
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
+
+
+@app.route('/eliminaracudiente/<cedula_acudiente>', methods=['DELETE'])
+def eliminar_acudiente(cedula_acudiente):
+        try:
+            if eliminar_acudiente(cedula_acudiente):
+                return jsonify({'mensaje': "Acudiente eliminado.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "No se pudo eliminar el acudiente", 'exito': False}), 400
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
 #CRUD docente
@@ -101,7 +125,8 @@ def registrar_docente():
         except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
-#registro de grupos
+
+#CRUD grupos
 @app.route('/registrogrupo', methods=['POST'])
 def registrar_grupo():
         try:
@@ -118,6 +143,7 @@ def registrar_grupo():
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
 
+
 #CRUD ninos
 @app.route('/registronino', methods=['POST'])
 def registrar_nino(): 
@@ -129,6 +155,52 @@ def registrar_nino():
     except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
+
+
+@app.route('/listarninos', methods=['GET'])
+def listar_ninos():
+        try:
+            ninos=listar_ninos()
+            if ninos != None:
+                for nino in ninos:
+                    print(nino)
+                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
+                return jsonify({'curso': nino, 'mensaje': "Lista de niños.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "niños no encontrado.", 'exito': False}), 400
+        except Exception as ex:
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+
+@app.route('/actualizarnino', methods=['PUT'])
+def actualizar_nino():
+        try:
+            if actualizar_nino(request):
+                return jsonify({'mensaje': "niño actualizado.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "No se pudo realizar la actualizacion", 'exito': False}), 400
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
+
+
+@app.route('/eliminaracudiente/<identificacion>', methods=['DELETE'])
+def eliminar_nino(identificacion):
+        try:
+            if eliminar_acudiente(identificacion):
+                return jsonify({'mensaje': "Acudiente eliminado.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "No se pudo eliminar el acudiente", 'exito': False}), 400
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
+
+
+
+
+
+
+
 
 
 # @cross_origin

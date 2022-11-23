@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2022 a las 15:56:51
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 7.4.30
+-- Tiempo de generación: 23-11-2022 a las 14:25:43
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_informacion_niño` (`nombre` VARCHAR(255), `apellido` VARCHAR(255), `genero` VARCHAR(255), `fecha_nacimiento` DATE, `parentesco` VARCHAR(255))   UPDATE `niño` SET `nombre`=nombre,`apellido`=apellido,`genero`=genero,`fecha_nacimiento`=fecha_nacimiento,`parentesco`=parentesco WHERE `identificacion`=identificacion$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_informacion_niño` (`identificacion` VARCHAR(100), `nombre` VARCHAR(100), `apellido` VARCHAR(100), `genero` VARCHAR(100), `fecha_nacimiento` DATE, `parentesco` VARCHAR(100))   UPDATE `niño` SET `nombre`=nombre,`apellido`=apellido,`genero`=genero,`fecha_nacimiento`=fecha_nacimiento,`parentesco`=parentesco WHERE `identificacion`=identificacion$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_informacio_acudiente` (IN `cedula_acudiente` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `telefono` VARCHAR(255), IN `telefono_2` VARCHAR(255), IN `acudiente_alternativo` VARCHAR(255))   UPDATE `acudiente` SET `nombre`=nombre,`apellido`=apellido,`telefono`=telefono,`telefono_2`=telefono_2,`acudiente_alternativo`=acudiente_alternativo WHERE `cedula_acudiente`=cedula_acudiente$$
 
@@ -207,13 +207,6 @@ ALTER TABLE `niño`
 --
 ALTER TABLE `grupos`
   ADD CONSTRAINT `grupos_ibfk_1` FOREIGN KEY (`cedula_docente`) REFERENCES `docente` (`cedula_docente`);
-
---
--- Filtros para la tabla `niño`
---
-ALTER TABLE `niño`
-  ADD CONSTRAINT `niño_ibfk_1` FOREIGN KEY (`cedula_acudiente`) REFERENCES `acudiente` (`cedula_acudiente`),
-  ADD CONSTRAINT `niño_ibfk_2` FOREIGN KEY (`codigo_grupo`) REFERENCES `grupo` (`codigo_grupo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
