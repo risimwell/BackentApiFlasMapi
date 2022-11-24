@@ -1,3 +1,4 @@
+
 def listar_acudientes():
     try:
         from CONEXION.Conexion import conectar #IMPORTAMOS EL METODO DE LA CONEXION
@@ -5,7 +6,9 @@ def listar_acudientes():
         cursor = conexion.connection.cursor()  #INICIAMOS LA CONEXION
         sql = "CALL listar_acudientes()" #DECLARAM0S EL CODIGO SQL QUE SE EJECUTARA
         cursor.execute(sql) #EJECUTAMOS LA SENTENCIA SQL
-        datos = cursor.fetchone() #.FETCHONE ACUMULA TODOS LOS DATOS QUE TRAIGA LA EJECUCION DEL CODIGO SQL
+        print(sql)
+        datos = cursor.fetchall() #.FETCHONE ACUMULA TODOS LOS DATOS QUE TRAIGA LA EJECUCION DEL CODIGO SQL
+        print(datos)
         if datos != None: #CONDICION QUE COMPARA SI LA CONSULTA EN REALIDAD TRAJO DATOS 
             return datos #RETORNAMOS LA INFORMACION
         else:
@@ -21,7 +24,9 @@ def listar_ninos():
         cursor = conexion.connection.cursor()  #INICIAMOS LA CONEXION
         sql = "CALL listar_niños()" #DECLARAM0S EL CODIGO SQL QUE SE EJECUTARA
         cursor.execute(sql) #EJECUTAMOS LA SENTENCIA SQL
-        datos = cursor.fetchone() #.FETCHONE ACUMULA TODOS LOS DATOS QUE TRAIGA LA EJECUCION DEL CODIGO SQL
+        print(sql)
+        datos = cursor.fetchall() #.FETCHONE ACUMULA TODOS LOS DATOS QUE TRAIGA LA EJECUCION DEL CODIGO SQL
+        print(datos)
         if datos != None: #CONDICION QUE COMPARA SI LA CONSULTA EN REALIDAD TRAJO DATOS 
             return datos #RETORNAMOS LA INFORMACION
         else:

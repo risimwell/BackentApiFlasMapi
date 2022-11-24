@@ -71,19 +71,21 @@ def registrar_acudiente():
 
 
 @app.route('/listaracudientes', methods=['GET'])
-def listar_acudientes():
+def listar_acudiente():
         try:
-            acudientes=listar_acudientes()
-            if acudientes != None:
-                for acudiente in acudientes:
+            datos=listar_acudientes()
+            lista_acudientes = []
+            print(datos)
+            if datos != None:
+                for fila in datos:
+                    acudiente = {'Cedula acudiente': fila[0], 'nombre': fila[1], 'apellido': fila[2], 'telefono': fila[3],'telefono_2': fila[4],'acudiente alternativo': fila[5],'telefono alternativo': fila[6],'clave': fila[7]}
                     print(acudiente)
-                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
-                return jsonify({'curso': acudiente, 'mensaje': "Lista de acudientes.", 'exito': True}), 200
+                    lista_acudientes.append(acudiente)
+                return jsonify({'usuarios': lista_acudientes, 'mensaje': "Usuarios listados.", 'exito': True}),200
             else:
-                return jsonify({'mensaje': "Acudientes no encontrado.", 'exito': False}), 400
+                return jsonify({'mensaje': "niños no encontrado.", 'exito': False}), 400
         except Exception as ex:
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
-
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 @app.route('/actualizaracudiente', methods=['PUT'])
 def actualizar_acudiente():
@@ -173,18 +175,21 @@ def registrar_nino():
 
 
 @app.route('/listarninos', methods=['GET'])
-def listar_ninos():
+def listar_nino():
         try:
-            ninos=listar_ninos()
-            if ninos != None:
-                for nino in ninos:
+            datos=listar_ninos()
+            lista_nino = []
+            print(datos)
+            if datos != None:
+                for fila in datos:
+                    nino = {'Identificacion': fila[0], 'nombre_usuario': fila[1], 'correo': fila[2], 'clave': fila[3], 'rol': fila[4]}
                     print(nino)
-                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
-                return jsonify({'curso': nino, 'mensaje': "Lista de niños.", 'exito': True}), 200
+                    lista_nino.append(nino)
+                return jsonify({'usuarios': lista_nino, 'mensaje': "Usuarios listados.", 'exito': True}),200
             else:
                 return jsonify({'mensaje': "niños no encontrado.", 'exito': False}), 400
         except Exception as ex:
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
 @app.route('/actualizarnino', methods=['PUT'])
