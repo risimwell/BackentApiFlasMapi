@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 //Objetos y clases
-import { Objetogrupo, Creargrupo } from 'src/app/Modelos/Salon/Salon';
+import { Objetogrupo, Creargrupo,Objetolistar} from 'src/app/Modelos/Salon/Salon';
 import { GruposService } from '../../../Servicios/grupos/grupos.service';
 import { EnvioDataService } from '../../../Servicios/envioData/envio-data.service';
 
@@ -30,7 +30,20 @@ export class SalonesComponent implements OnInit {
   //Objeto grupo
   grupo: Objetogrupo[]=[];
 
-  constructor(private servicio_grupo: GruposService, private obtenerData:EnvioDataService, private formlarioGrupo:FormBuilder, private router:Router) { }
+//formulario listar grupo
+  formulario_listar= new FormGroup({
+
+    nombre_grupo: new FormControl ('',Validators.required),
+    codigo_grupo: new FormControl('',Validators.required),
+    fecha_creacion: new FormControl('',Validators.required),
+    grupo: new FormControl('',Validators.required)
+
+  })
+
+  //objeto listar
+  listar: Objetolistar[]=[];
+
+  constructor(private servicio_grupo: GruposService, private obtenerData:EnvioDataService, private formlarioGrupo:FormBuilder,private formulariolistar:FormBuilder, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -45,7 +58,7 @@ export class SalonesComponent implements OnInit {
       nombre_institucion: form.nombre_institucion,
       fecha_creacion:form.fecha_creacion,
       cedula_docente:form.cedula_docente,
-     
+
 
     }
 
@@ -55,5 +68,26 @@ export class SalonesComponent implements OnInit {
 
     })
 
-  }
-}
+  }}
+
+    Listar_grupo (form:any){
+      console.log("Estoy adentro de listar grupo")
+      const listar: Objetolistar={
+
+        nombre_grupo:form.nombre_grupo,
+        codigo_grupo:form.codigo_grupo,
+        fecha_creacion:form.fecha_creacion,
+
+
+
+      }
+    }
+      console.log("Va a disparar el servicio");
+      this.servicio_grupo.getAll(listar).subscribe({
+
+
+      })
+
+
+
+

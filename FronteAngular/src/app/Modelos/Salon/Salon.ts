@@ -1,5 +1,6 @@
 import { Data } from "@angular/router";
 
+
 export interface Objetogrupo{
   nombre_grupo:String;
   codigo_grupo:String;
@@ -17,6 +18,14 @@ export interface Creargrupo{
   nombre_institucion:String;
   fecha_creacion:String;
   cedula_docente:String;
-  
+
+
+}
+
+export interface Objetolistar{
+  nombre_grupo:String;
+  codigo_grupo:String;
+  fecha_creacion:String;
+
 
 }

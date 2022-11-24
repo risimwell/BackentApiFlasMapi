@@ -145,17 +145,22 @@ def registrar_grupo():
 #listar grupos
 @app.route('/listargrupos', methods=['GET'])
 def listar_grupos():
-        try:
-            acudientes=listar_acudientes()
-            if acudientes != None:
-                for grupos in grupos:
-                    print(grupos)
-                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
-                return jsonify({'curso': grupos, 'mensaje': "Lista de acudientes.", 'exito': True}), 200
-            else:
-                return jsonify({'mensaje': "Acudientes no encontrado.", 'exito': False}), 400
-        except Exception as ex:
-            return jsonify({'mensaje': "Error", 'exito': False}), 400
+    try:
+        cursor = conexion.connection.cursor()
+        sql = "SELECT Nombre_Grupo, codigo_grupo , fecha_creacion FROM grupos"
+        cursor.execute(sql)
+        datos = cursor.fetchall()
+        grupos = []
+        print(sql)
+        for fila in datos:
+            grupo = {'nombre_grupo': fila[0], 'codigo_grupo': fila[1], 'fecha_creacion': fila[2]}
+            grupos.append(grupo)
+        return jsonify({'cursos': grupos, 'mensaje': "Cursos listados.", 'exito': True})
+    except Exception as ex:
+        return jsonify({'mensaje': "Error", 'exito': False})
+
+   
+               
 
 
 

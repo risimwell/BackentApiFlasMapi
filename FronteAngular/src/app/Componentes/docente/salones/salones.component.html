@@ -1,27 +1,31 @@
 
+<form action="" [formGroup]= "formulario_grupos" (ngSubmit)="Registrar_grupo(formulario_grupos.value)">
 
-<div class="col-md-3">
+  <div class="col-md-3">
 
-  <table class="table table-light">Aca Listo Estudiantes
-    <tbody>
-      <tr>
-        <td></td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>listas</th>
-      </tr>
-    </tfoot>
-  </table>
+    <table class="table table-light">Grupos
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>listas</th>
+        </tr>
+      </tfoot>
+    </table>
 
-  <div class="input-group">
-    <span class="input-group-btn">
-      <button class="btn btn-secondary" type="button" aria-label="">Listar Cursos</button>
-    </span>
-    <input type="text" class="form-control" name="name" id="name" placeholder="" aria-label="">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="submit" aria-label="">Listar Cursos</button>
+      </span>
+      <input type="text" class="form-control" name="name" id="name" placeholder="" aria-label="">
+    </div>
   </div>
-</div>
+
+</form>
+
 
                 <form action=""[formGroup]= "formulario_grupos" (ngSubmit)="Registrar_grupo(formulario_grupos.value)"  >
 
