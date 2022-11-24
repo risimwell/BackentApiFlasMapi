@@ -10,7 +10,7 @@ import { Objetoacudiente, Crearacudiente } from '../../Modelos/Acudiente/Acudien
 //Servicios
 import { DocenteService } from '../../Servicios/docente/docente.service';
 import {AcudienteService} from '../../Servicios/acudiente/acudiente.service'
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 
 
 @Component({
@@ -62,9 +62,9 @@ export class RegistrarComponent implements OnInit {
     this.servicio_Acudiente.create(acudiente).subscribe({
         next: () => {
           //Alert de confirmacion
-          Swal.fire(
+          //Swal.fire(
             'Acudiente registrado con exito'
-          )
+          //)
 
           //Redireccion a la pagina
           this.router.navigateByUrl('panelacudiente')

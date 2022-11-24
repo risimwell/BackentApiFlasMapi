@@ -41,8 +41,7 @@ CREATE TABLE grupo
   codigo_anuncio VARCHAR(100) NOT NULL,
   cedula_docente VARCHAR(100) NOT NULL,
   PRIMARY KEY (codigo_grupo),
-  FOREIGN KEY (codigo_anuncio) REFERENCES anuncio(codigo_anuncio),
-  FOREIGN KEY (cedula_acudiente) REFERENCES docente(cedula_acudiente),
+  
   
 );
 

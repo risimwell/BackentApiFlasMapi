@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 14:25:43
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 24-11-2022 a las 05:52:11
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudientes` ()   SELECT * FR
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niño` (`identificacion` VARCHAR(100))   SELECT * FROM `niño`  WHERE `identificacion`=identificacion$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niños` ()   SELECT * FROM `niño`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registragrpo` (`Nombre_Grupo` VARCHAR(100), `codigo_grupo` VARCHAR(255), `nombre_Insitucion` VARCHAR(255), `fecha_creacion` DATE, `cedula_docente` VARCHAR(255))   INSERT INTO `grupos`(`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `cedula_docente`) VALUES
+  (Nombre_Grupo,codigo_grupo,nombre_Insitucion,fecha_creacion,cedula_docente)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_acudiente` (`cedula_acudiente` VARCHAR(255), `nombre` VARCHAR(255), `apellido` VARCHAR(255), `telefono` VARCHAR(255), `clave` VARCHAR(255))   INSERT INTO `acudiente`(`cedula_acudiente`, `nombre`, `apellido`, `telefono`, `clave`) VALUES (cedula_acudiente,nombre,apellido,telefono,clave)$$
 
@@ -131,6 +134,13 @@ CREATE TABLE `grupos` (
   `fecha_creacion` date NOT NULL,
   `cedula_docente` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `grupos`
+--
+
+INSERT INTO `grupos` (`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `cedula_docente`) VALUES
+('ca', '32323', 'sena', '2022-11-23', '2');
 
 -- --------------------------------------------------------
 

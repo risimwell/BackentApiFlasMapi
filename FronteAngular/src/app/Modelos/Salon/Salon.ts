@@ -5,7 +5,6 @@ export interface Objetogrupo{
   codigo_grupo:String;
   nombre_institucion:String;
   fecha_creacion:Data;
-  codigo_anuncio:String;
   cedula_docente:String;
 
 
@@ -17,7 +16,6 @@ export interface Creargrupo{
   codigo_grupo:String;
   nombre_institucion:String;
   fecha_creacion:String;
-  codigo_anuncio:String;
   cedula_docente:String;
   
 

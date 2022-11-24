@@ -44,7 +44,6 @@ export class SalonesComponent implements OnInit {
       codigo_grupo:form.codigo_grupo,
       nombre_institucion: form.nombre_institucion,
       fecha_creacion:form.fecha_creacion,
-      codigo_anuncio:form.codigo_anuncio,
       cedula_docente:form.cedula_docente,
      
 

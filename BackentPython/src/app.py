@@ -131,8 +131,7 @@ def registrar_docente():
 def registrar_grupo():
         try:
             cursor = conexion.connection.cursor()
-            sql = """INSERT INTO grupo (Nombre_Grupo,codigo_grupo, nombre_Insitucion, fecha_creacion,codigo_anuncio, cedula_docente) 
-            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['nombre_grupo'],request.json['codigo_grupo'],request.json['nombre_institucion'],request.json['fecha_creacion'],request.json['codigo_anuncio'],request.json['cedula_docente'])
+            sql = "CALL registragrpo ('{0}', '{1}', '{2}', '{3}', '{4}')".format(request.json['nombre_grupo'],request.json['codigo_grupo'],request.json['nombre_institucion'],request.json['fecha_creacion'],request.json['cedula_docente'])
             print("codigo sql", sql)
             # Ejecutar la sentencia SQL
             cursor.execute(sql)
@@ -142,6 +141,22 @@ def registrar_grupo():
         except Exception as ex:
             print(ex)
             return jsonify({'mensaje': "Error", 'exito': False}), 400
+
+#listar grupos
+@app.route('/listargrupos', methods=['GET'])
+def listar_grupos():
+        try:
+            acudientes=listar_acudientes()
+            if acudientes != None:
+                for grupos in grupos:
+                    print(grupos)
+                    #acudiente = {'cedula_acudiente': acudientes.cedula_acudiente, 'nombre': curso[1], 'apellido': curso[2], 'telefono':curso[3],'telefono_2': curso[4], 'acudiente_alternativo':curso[5],'telefono_alternativo': curso[6], 'clave':curso[7]}
+                return jsonify({'curso': grupos, 'mensaje': "Lista de acudientes.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "Acudientes no encontrado.", 'exito': False}), 400
+        except Exception as ex:
+            return jsonify({'mensaje': "Error", 'exito': False}), 400
+
 
 
 #CRUD ninos
