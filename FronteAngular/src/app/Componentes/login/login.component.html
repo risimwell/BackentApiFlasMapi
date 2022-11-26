@@ -1,39 +1,37 @@
-<div class="container">
-  <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="well well-sm">
-            <form class="form-horizontal" [formGroup]= "formulario" (ngSubmit)="ingresar(formulario.value)">
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de cedula -->
-                    <div class="form-group">
-                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                      <div class="col-md-8">
-                        <input type="email" class="form-control" name="cedula" formControlName="cedula" id="cedula" placeholder="Documento identidad">
-                    </div>
-                </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Campo de clave -->
-                    <div class="form-group">
-                      <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                      <div class="col-md-8">
-                        <input type="password" class="form-control" name="clave" formControlName="clave" id="clave" placeholder="Clave">
-                      </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!-- Boton -->
-                    <div class="form-group">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                        <button type="submit" class="btn btn-dark" >Ingresar</button>
-                        <a href="/registrar">Registrar</a>
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </form>
-          </div>
-      </div>
-  </div>
+
+
+<div class="container ">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header justify-content-center">
+				<h3>Iniciar sesion</h3>
+			</div>
+			<div class="card-body">
+				<form class="form-horizontal" [formGroup]= "formulario" (ngSubmit)="ingresar(formulario.value)" >
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"><img src="../../../assets/cedula.png" alt="" height="40px"></i></span>
+						</div>
+            <input type="email" class="form-control" name="cedula" formControlName="cedula" id="cedula" placeholder="Documento identidad">
+
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+            <input type="password" class="form-control" name="clave" formControlName="clave" id="clave" placeholder="Clave">
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-dark" >Ingresar</button>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					No tiene cuenta aun?<a href="/registrar">Registrate</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

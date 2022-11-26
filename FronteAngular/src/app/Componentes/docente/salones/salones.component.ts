@@ -70,7 +70,7 @@ export class SalonesComponent implements OnInit {
 
   }}
 
-    Listar_grupo (form:any){
+   /*  Listar_grupo (form:any){
       console.log("Estoy adentro de listar grupo")
       const listar: Objetolistar={
 
@@ -86,7 +86,7 @@ export class SalonesComponent implements OnInit {
       this.servicio_grupo.getAll(listar).subscribe({
 
 
-      })
+      }) */
 
 
 
