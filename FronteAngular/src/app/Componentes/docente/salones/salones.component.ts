@@ -70,6 +70,7 @@ export class SalonesComponent implements OnInit {
 
   }}
 
+<<<<<<< HEAD
 
 
 
@@ -78,6 +79,25 @@ export class SalonesComponent implements OnInit {
 
 
       
+=======
+   /*  Listar_grupo (form:any){
+      console.log("Estoy adentro de listar grupo")
+      const listar: Objetolistar={
+
+        nombre_grupo:form.nombre_grupo,
+        codigo_grupo:form.codigo_grupo,
+        fecha_creacion:form.fecha_creacion,
+
+
+
+      }
+    }
+      console.log("Va a disparar el servicio");
+      this.servicio_grupo.getAll(listar).subscribe({
+
+
+      }) */
+>>>>>>> cf7a0ec51e807fda5b91a933972628bb40ca443a
 
 
 
