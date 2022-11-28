@@ -1,26 +1,41 @@
 
-<form action="" [formGroup]= "formulario_grupos" (ngSubmit)="Registrar_grupo(formulario_grupos.value)">
+<form action="">
 
-  <div class="col-md-3">
+  <div class="col-md-9">
+    <h2>Grupos</h2>
+    <table class="table table-light">
 
-    <table class="table table-light">Grupos
+      
+        <thead *ngIf="listagrupos.length>0">
+        <th>N°</th>
+        <th>Nombre del Grupo</th>
+        <th>Codigo del Grupo</th>
+        <th>Fecha de Creacion del Grupo</th>
+        </thead>
       <tbody>
-        <tr>
-          <td></td>
-        </tr>
+       
+        <tr  *ngFor="let listargrupos of listagrupos; index as i;"  >
+
+            <td>{{i+1}}</td>
+            <td>{{listargrupos.nombre_grupo}}</td>
+            <td>{{listargrupos.codigo_grupo}}</td>
+            <td>{{listargrupos.fecha_creacion}}</td>
+    
+          </tr>
       </tbody>
+     
       <tfoot>
         <tr>
-          <th>listas</th>
+          <th></th>
         </tr>
       </tfoot>
     </table>
 
     <div class="input-group">
       <span class="input-group-btn">
-        <button class="btn btn-secondary" type="submit" aria-label="">Listar Cursos</button>
+        <button class="btn btn-secondary" (click)="escuchandogrupos()" type="submit" aria-label="">Listar Grupos</button>
       </span>
-      <input type="text" class="form-control" name="name" id="name" placeholder="" aria-label="">
+    
     </div>
   </div>
 

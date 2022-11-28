@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Creargrupo,Objetogrupo } from 'src/app/Modelos/Salon/Salon';
+import { Objetolistar, Respuestagrupo } from '../../Modelos/Salon/Salon';
 
 const baseUrl = 'http://127.0.0.1:5000';
 
@@ -18,8 +19,8 @@ export class GruposService {
     return this.http.get(baseUrl,{headers:header})
   }
 
-  getAll(): Observable<Objetogrupo[]> {
-    return this.http.get<Objetogrupo[]>(baseUrl);
+  getAll(){
+    return this.http.get<Respuestagrupo>(`${baseUrl}/listargrupos`);
   }
 
   get(id: any): Observable<any> {

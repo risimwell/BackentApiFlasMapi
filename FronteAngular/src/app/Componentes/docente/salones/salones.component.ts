@@ -29,16 +29,8 @@ export class SalonesComponent implements OnInit {
   })
   //Objeto grupo
   grupo: Objetogrupo[]=[];
+  listagrupos: Objetolistar[]=[];
 
-//formulario listar grupo
-  formulario_listar= new FormGroup({
-
-    nombre_grupo: new FormControl ('',Validators.required),
-    codigo_grupo: new FormControl('',Validators.required),
-    fecha_creacion: new FormControl('',Validators.required),
-    grupo: new FormControl('',Validators.required)
-
-  })
 
   //objeto listar
   listar: Objetolistar[]=[];
@@ -47,8 +39,24 @@ export class SalonesComponent implements OnInit {
 
   ngOnInit(): void {
 
+    
 
   }
+
+
+ 
+    
+
+  
+
+  escuchandogrupos(){
+    this.servicio_grupo.getAll().subscribe(response=>{
+      this.listagrupos=response.cursos;
+
+
+  })
+    }
+
   Registrar_grupo (form:any){
     console.log("Estoy adentro de regitrar grupo")
     const grupo: Creargrupo={
@@ -68,9 +76,10 @@ export class SalonesComponent implements OnInit {
 
     })
 
+
+
   }}
 
-<<<<<<< HEAD
 
 
 
@@ -78,8 +87,7 @@ export class SalonesComponent implements OnInit {
 
 
 
-      
-=======
+
    /*  Listar_grupo (form:any){
       console.log("Estoy adentro de listar grupo")
       const listar: Objetolistar={
@@ -97,7 +105,6 @@ export class SalonesComponent implements OnInit {
 
 
       }) */
->>>>>>> cf7a0ec51e807fda5b91a933972628bb40ca443a
 
 
 

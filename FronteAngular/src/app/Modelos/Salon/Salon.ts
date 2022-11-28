@@ -29,3 +29,7 @@ export interface Objetolistar{
 
 
 }
+export interface Respuestagrupo{
+  cursos:Objetolistar[];
+
+}
