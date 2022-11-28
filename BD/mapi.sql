@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2022 a las 05:52:11
+-- Tiempo de generación: 28-11-2022 a las 02:37:31
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 7.4.30
 
@@ -37,6 +37,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_acudiente` (`cedula_acudie
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_niño` (`identificacion` VARCHAR(100))   DELETE FROM `niño` WHERE `identificacion`=identificacion$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ListarGrupos` ()   SELECT Nombre_Grupo, codigo_grupo , fecha_creacion FROM grupos$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudiente` (`cedula_acudiente` VARCHAR(100))   SELECT * FROM `acudiente`  WHERE `cedula_acudiente`=cedula_acudiente$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_acudientes` ()   SELECT * FROM `acudiente`$$
@@ -47,6 +49,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `listar_niños` ()   SELECT * FROM `
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registragrpo` (`Nombre_Grupo` VARCHAR(100), `codigo_grupo` VARCHAR(255), `nombre_Insitucion` VARCHAR(255), `fecha_creacion` DATE, `cedula_docente` VARCHAR(255))   INSERT INTO `grupos`(`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `cedula_docente`) VALUES
   (Nombre_Grupo,codigo_grupo,nombre_Insitucion,fecha_creacion,cedula_docente)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarDocente` (IN `cedula_docente` VARCHAR(255), IN `nombre` VARCHAR(255), IN `apellido` VARCHAR(255), IN `telefono` VARCHAR(255), IN `institucion` VARCHAR(255), IN `clave` VARCHAR(255))   INSERT INTO `docente`(`cedula_docente`, `nombre`, `apellido`, `telefono`, `institucion`,`clave`) VALUES (cedula_docente,nombre,apellido,telefono,institucion,clave)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_acudiente` (`cedula_acudiente` VARCHAR(255), `nombre` VARCHAR(255), `apellido` VARCHAR(255), `telefono` VARCHAR(255), `clave` VARCHAR(255))   INSERT INTO `acudiente`(`cedula_acudiente`, `nombre`, `apellido`, `telefono`, `clave`) VALUES (cedula_acudiente,nombre,apellido,telefono,clave)$$
 
@@ -119,6 +123,7 @@ CREATE TABLE `docente` (
 
 INSERT INTO `docente` (`cedula_docente`, `nombre`, `apellido`, `telefono`, `institucion`, `clave`) VALUES
 ('2', '2', '2', '2', '', '2'),
+('23', 'carlos', 'peres', 'sena', '', '23'),
 ('4', '4', '4', '4', '', '4');
 
 -- --------------------------------------------------------
@@ -140,7 +145,9 @@ CREATE TABLE `grupos` (
 --
 
 INSERT INTO `grupos` (`Nombre_Grupo`, `codigo_grupo`, `nombre_Insitucion`, `fecha_creacion`, `cedula_docente`) VALUES
-('ca', '32323', 'sena', '2022-11-23', '2');
+('ca', '32323', 'sena', '2022-11-23', '2'),
+('parbulos', '323236', 'semillitas del manana', '2022-11-24', '2'),
+('4-3', '45454', 'sena', '2022-11-27', '2');
 
 -- --------------------------------------------------------
 

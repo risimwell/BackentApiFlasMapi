@@ -23,7 +23,7 @@ def nombre():
 # CORS(app)
 CORS(app, resources={r"/registro/*": {"origins": "http://localhost:4200"}})
 CORS(app, resources={r"/login/*": {"origins": "http://localhost:4200"}})
-
+CORS(app, resources={r"/listargrupos/*": {"origins": "http://localhost:4200"}})
 conexion=MySQL(app)
 
 
@@ -116,8 +116,7 @@ def eliminar_acudiente(cedula_acudiente):
 def registrar_docente():
         try:
             cursor = conexion.connection.cursor()
-            sql = """INSERT INTO docente (cedula_docente,nombre, apellido, telefono,institucion, clave) 
-            VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['cedula_docente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['institucion'],request.json['clave'])
+            sql = "CALL RegistrarDocente('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['cedula_docente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['institucion'],request.json['clave'])
             print("codigo sql", sql)
             # Ejecutar la sentencia SQL
             cursor.execute(sql)
@@ -149,7 +148,7 @@ def registrar_grupo():
 def listar_grupos():
     try:
         cursor = conexion.connection.cursor()
-        sql = "SELECT Nombre_Grupo, codigo_grupo , fecha_creacion FROM grupos"
+        sql = "CALL ListarGrupos"
         cursor.execute(sql)
         datos = cursor.fetchall()
         grupos = []
@@ -157,9 +156,9 @@ def listar_grupos():
         for fila in datos:
             grupo = {'nombre_grupo': fila[0], 'codigo_grupo': fila[1], 'fecha_creacion': fila[2]}
             grupos.append(grupo)
-        return jsonify({'cursos': grupos, 'mensaje': "Cursos listados.", 'exito': True})
+        return jsonify({'cursos': grupos, 'mensaje': "Cursos listados.", 'exito': True}),200
     except Exception as ex:
-        return jsonify({'mensaje': "Error", 'exito': False})
+        return jsonify({'mensaje': "Error", 'exito': False}),400
 
    
                

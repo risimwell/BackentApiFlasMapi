@@ -47,6 +47,9 @@ SELECT * FROM `niño`;
 CREATE PROCEDURE listar_niño(identificacion varchar(100)) 
 SELECT * FROM `niño`  WHERE `identificacion`=identificacion;
 
+CREATE PROCEDURE RegistrarDocente(cedula_docente varchar(255), nombre varchar(255), apellido varchar(255), telefono varchar(255), institucion varchar(255), clave varchar(255)) 
+INSERT INTO `docente`(`cedula_docente`, `nombre`, `apellido`, `telefono`, `institucion`,`clave`) VALUES (cedula_docente,nombre,apellido,telefono,institucion,clave);
+
 
 
 
