@@ -45,6 +45,7 @@ import { RegistrarComponent } from './Componentes/registrar/registrar.component'
     ReactiveFormsModule,
     routing,
     RouterModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

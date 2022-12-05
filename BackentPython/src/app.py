@@ -37,13 +37,15 @@ def iniciar_sesion():
     # Obtengo el correo y la contrasena de la base de datos usando el correo que me entregan por el JSON
     cedula = request.json['cedula']
     clave = request.json['clave']
+    
     cursor = conexion.connection.cursor()
     sql = "SELECT nombre, clave FROM  acudiente WHERE  cedula_acudiente='%s'" %cedula
     cursor.execute(sql)
     resultado = cursor.fetchone()
     if resultado is not None:
-        if (clave == resultado[0]):
-            return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[1],'cedula':cedula}), 200
+        print(clave,resultado[1])
+        if (clave == resultado[1]):
+            return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[0],'cedula':cedula}), 200
         else:
             return " Contraseña Incorrecta" 
     else:
@@ -52,8 +54,8 @@ def iniciar_sesion():
         cursor.execute(sql)
         resultado = cursor.fetchone()
         if resultado is not None:
-            if (clave == resultado[0]):
-                return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[1],'cedula':cedula}), 200
+            if (clave == resultado[1]):
+                return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[0],'cedula':cedula}), 200
             else:
                 return " Contraseña Incorrecta" 
         return "Usuario no registrado"
