@@ -12,6 +12,20 @@ def actualizar_acudiente(request):
     except Exception as ex:
         return False #RETORNAMOS UN BOOL COMO INDICADOR
 
+
+def actualizar_acudiente_cedula(cedula_acudiente,request,conexion):
+    try :
+        cursor = conexion.connection.cursor()  #INICIAMOS LA CONEXION
+        #DECLARAM0S EL CODIGO SQL QUE SE EJECUTARA
+        sql = "CALL actulizar_clave_acudiente('{0}', '{1}')".format(request.json['clave'],cedula_acudiente)
+        print("codigo sql", sql) #IMPRIMIMOS LA EJECUSION SQL PARA VER QUE SE EJECURA
+        cursor.execute(sql) #EJECUTAMOS LA SENTENCIA SQL
+        conexion.connection.commit() #ACEPTAMOS LA SENTENCIA SQL
+        return True #RETORNAMOS UN BOOL COMO INDICADOR 
+    except Exception as ex:
+        return False #RETORNAMOS UN BOOL COMO INDICADOR
+
+
 def actualizar_nino(request):
     try :
         from CONEXION.Conexion import conectar #IMPORTAMOS EL METODO DE LA CONEXION

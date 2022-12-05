@@ -24,6 +24,8 @@ def nombre():
 CORS(app, resources={r"/registro/*": {"origins": "http://localhost:4200"}})
 CORS(app, resources={r"/login/*": {"origins": "http://localhost:4200"}})
 CORS(app, resources={r"/listargrupos/*": {"origins": "http://localhost:4200"}})
+CORS(app, resources={r"/listarninos/*": {"origins": "http://localhost:4200"}})
+
 conexion=MySQL(app)
 
 
@@ -61,7 +63,7 @@ def iniciar_sesion():
 @app.route('/registroacudiente', methods=['POST'])
 def registrar_acudiente():
         try:
-            if registro_acudiente(request):
+            if registro_acudiente(request,conexion):
                 return jsonify({'mensaje': "Acudiente registrado.", 'exito': True}), 200
             else:
                 return jsonify({'mensaje': "No se pudo realizar el registro", 'exito': False}), 400
@@ -73,7 +75,7 @@ def registrar_acudiente():
 @app.route('/listaracudientes', methods=['GET'])
 def listar_acudiente():
         try:
-            datos=listar_acudientes()
+            datos=listar_acudientes(conexion)
             lista_acudientes = []
             print(datos)
             if datos != None:
@@ -87,6 +89,7 @@ def listar_acudiente():
         except Exception as ex:
             return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
+
 @app.route('/actualizaracudiente', methods=['PUT'])
 def actualizar_acudiente():
         try:
@@ -99,10 +102,22 @@ def actualizar_acudiente():
             return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
-@app.route('/eliminaracudiente/<cedula_acudiente>', methods=['DELETE'])
-def eliminar_acudiente(cedula_acudiente):
+@app.route('/actualizaracudientecedula/<cedula_acudiente>', methods=['PUT'])
+def actualizar_cedula(cedula_acudiente):
         try:
-            if eliminar_acudiente(cedula_acudiente):
+            if actualizar_acudiente_cedula(cedula_acudiente,request,conexion):
+                return jsonify({'mensaje': "Acudiente actualizado.", 'exito': True}), 200
+            else:
+                return jsonify({'mensaje': "No se pudo realizar la actualizacion", 'exito': False}), 400
+        except Exception as ex:
+            print(ex)
+            return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
+
+
+@app.route('/eliminaracudiente/<cedula_acudiente>', methods=['DELETE'])
+def eliminar_acudientes(cedula_acudiente):
+        try:
+            if eliminar_acudiente(cedula_acudiente,conexion):
                 return jsonify({'mensaje': "Acudiente eliminado.", 'exito': True}), 200
             else:
                 return jsonify({'mensaje': "No se pudo eliminar el acudiente", 'exito': False}), 400
@@ -116,7 +131,7 @@ def eliminar_acudiente(cedula_acudiente):
 def registrar_docente():
         try:
             cursor = conexion.connection.cursor()
-            sql = "CALL RegistrarDocente('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['cedula_docente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['institucion'],request.json['clave'])
+            sql = "CALL registrar_Docente('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')""".format(request.json['cedula_docente'],request.json['nombre'],request.json['apellido'],request.json['telefono'],request.json['institucion'],request.json['clave'])
             print("codigo sql", sql)
             # Ejecutar la sentencia SQL
             cursor.execute(sql)
@@ -148,7 +163,7 @@ def registrar_grupo():
 def listar_grupos():
     try:
         cursor = conexion.connection.cursor()
-        sql = "CALL ListarGrupos"
+        sql = "CALL listar_grupos()"
         cursor.execute(sql)
         datos = cursor.fetchall()
         grupos = []
@@ -161,15 +176,11 @@ def listar_grupos():
         return jsonify({'mensaje': "Error", 'exito': False}),400
 
    
-               
-
-
-
 #CRUD ninos
 @app.route('/registronino', methods=['POST'])
 def registrar_nino(): 
     try:
-        if registro_nino(request):
+        if registro_nino(request,conexion):
             return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200
         else:
             return jsonify({'mensaje': "No se pudo realizar el registro", 'exito': False}), 400
@@ -181,12 +192,12 @@ def registrar_nino():
 @app.route('/listarninos', methods=['GET'])
 def listar_nino():
         try:
-            datos=listar_ninos()
+            datos=listar_ninos(conexion)
             lista_nino = []
             print(datos)
             if datos != None:
                 for fila in datos:
-                    nino = {'Identificacion': fila[0], 'nombre_usuario': fila[1], 'correo': fila[2], 'clave': fila[3], 'rol': fila[4]}
+                    nino = {'identificacion': fila[0], 'nombre': fila[1], 'apellido': fila[2], 'edad': fila[3], 'genero': fila[4], 'fecha_nacimiento': fila[5], 'codigo_grupo': fila[6]}
                     print(nino)
                     lista_nino.append(nino)
                 return jsonify({'usuarios': lista_nino, 'mensaje': "Usuarios listados.", 'exito': True}),200
@@ -208,10 +219,10 @@ def actualizar_nino():
             return jsonify({'mensaje': "Servidor caido", 'exito': False}), 400
 
 
-@app.route('/eliminaracudiente/<identificacion>', methods=['DELETE'])
-def eliminar_nino(identificacion):
+@app.route('/eliminarnino/<identificacion>', methods=['DELETE'])
+def eliminar_ninos(identificacion):
         try:
-            if eliminar_acudiente(identificacion):
+            if eliminar_nino(identificacion,conexion):
                 return jsonify({'mensaje': "Acudiente eliminado.", 'exito': True}), 200
             else:
                 return jsonify({'mensaje': "No se pudo eliminar el acudiente", 'exito': False}), 400

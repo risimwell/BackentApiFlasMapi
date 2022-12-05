@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Crearnino,Objetonino } from 'src/app/Modelos/Nino/nino';
+import { Respuestanino } from '../../Modelos/Nino/nino';
 
 
 const baseUrl = 'http://127.0.0.1:5000';
@@ -18,12 +19,12 @@ export class NinoService {
    //Declaramos la funcion para realizar consultas al api
    getTodo(){
      let header= new HttpHeaders().set('Type-content','aplication/json')
-     return this.http.get(baseUrl,{headers:header})
+     return this.http.get(`${baseUrl}/listarninos`,{headers:header})
    }
 
-   getAll(): Observable<Objetonino[]> {
-     return this.http.get<Objetonino[]>(baseUrl);
-   }
+   getAll(){
+    return this.http.get<Respuestanino>(`${baseUrl}/listarninos`);
+  } 
 
    get(id: any): Observable<any> {
      return this.http.get(`${baseUrl}/${id}`);

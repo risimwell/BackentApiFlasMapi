@@ -4,7 +4,39 @@
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
    <div class="card">
     <div class="card-body">
-      <h1>Aca traigo los niños</h1>
+      <table class="table table-light">
+
+
+        <thead >
+        <th>N°</th>
+        <th>Identificacion</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Genero</th>
+        <th>Fecha nacimiento</th>
+        <th>Grupo</th>
+        </thead>
+      <tbody>
+        <tr  *ngFor="let nino of lista_nino; index as i;"  >
+            <td>{{i+1}}</td>
+            <td>{{nino.identificacion}}</td>
+            <td>{{nino.nombre}}</td>
+            <td>{{nino.apellido}}</td>
+            <td>{{nino.edad}}</td>
+            <td>{{nino.genero}}</td>
+            <td>{{nino.fecha_nacimiento}}</td>
+            <td>{{nino.codigo_grupo}}</td>
+
+          </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
     </div>
    </div>
   </div>

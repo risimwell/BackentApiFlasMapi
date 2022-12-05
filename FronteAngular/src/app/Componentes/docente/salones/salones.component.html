@@ -5,25 +5,25 @@
     <h2>Grupos</h2>
     <table class="table table-light">
 
-      
-        <thead *ngIf="listagrupos.length>0">
+
+        <thead *ngIf="listagrupos.length>0"> 
         <th>N°</th>
         <th>Nombre del Grupo</th>
         <th>Codigo del Grupo</th>
         <th>Fecha de Creacion del Grupo</th>
         </thead>
       <tbody>
-       
+
         <tr  *ngFor="let listargrupos of listagrupos; index as i;"  >
 
             <td>{{i+1}}</td>
             <td>{{listargrupos.nombre_grupo}}</td>
             <td>{{listargrupos.codigo_grupo}}</td>
             <td>{{listargrupos.fecha_creacion}}</td>
-    
+
           </tr>
       </tbody>
-     
+
       <tfoot>
         <tr>
           <th></th>
@@ -35,14 +35,14 @@
       <span class="input-group-btn">
         <button class="btn btn-secondary" (click)="escuchandogrupos()" type="submit" aria-label="">Listar Grupos</button>
       </span>
-    
+
     </div>
   </div>
 
 </form>
 
 
-                <form action=""[formGroup]= "formulario_grupos" (ngSubmit)="Registrar_grupo(formulario_grupos.value)"  >
+                <form action="" [formGroup]= "formulario_grupos" (ngSubmit)="Registrar_grupo(formulario_grupos.value)"  >
 
               <!-- Campo de nombre del Grupo-->
                  <div class="form-group">

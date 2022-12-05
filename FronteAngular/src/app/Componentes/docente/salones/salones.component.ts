@@ -31,7 +31,6 @@ export class SalonesComponent implements OnInit {
   grupo: Objetogrupo[]=[];
   listagrupos: Objetolistar[]=[];
 
-
   //objeto listar
   listar: Objetolistar[]=[];
 
@@ -39,52 +38,25 @@ export class SalonesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
-
   }
-
-
- 
-    
-
-  
-
   escuchandogrupos(){
     this.servicio_grupo.getAll().subscribe(response=>{
       this.listagrupos=response.cursos;
-
-
   })
-    }
-
+  }
   Registrar_grupo (form:any){
     console.log("Estoy adentro de regitrar grupo")
     const grupo: Creargrupo={
-
       nombre_grupo:form.nombre_grupo,
       codigo_grupo:form.codigo_grupo,
       nombre_institucion: form.nombre_institucion,
       fecha_creacion:form.fecha_creacion,
       cedula_docente:form.cedula_docente,
-
-
     }
-
     console.log("Va a disparar el servicio");
     this.servicio_grupo.create(grupo).subscribe({
-
-
     })
-
-
-
   }}
-
-
-
-
-
-
 
 
 

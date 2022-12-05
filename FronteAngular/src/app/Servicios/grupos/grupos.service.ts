@@ -41,7 +41,7 @@ export class GruposService {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 
-  deleteAll(): Observable<any> {
+  /* deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
-  }
+  } */
 }

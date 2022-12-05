@@ -1,0 +1,127 @@
+CREATE DATABASE mapi;
+USE mapi;
+CREATE TABLE acudientes
+(
+  cedula_acudiente VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  telefono VARCHAR(100) NOT NULL,
+  telefono_2 VARCHAR(100) ,
+  acudiente_alternativo VARCHAR(100) ,
+  teléfono_alternativo VARCHAR(100) ,
+  clave VARCHAR(100) NOT NULL,
+  PRIMARY KEY (cedula_acudiente)
+);
+
+CREATE TABLE docente
+(
+  cedula_docente VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  telefono VARCHAR(100) NOT NULL,
+  institucion VARCHAR(100) NOT NULL,
+  clave VARCHAR(100) NOT NULL,
+  PRIMARY KEY (cedula_acudiente)
+);
+
+CREATE TABLE anuncio
+(
+  codigo_anuncio VARCHAR(100) NOT NULL,
+  descripcion VARCHAR(255) NOT NULL,
+  fecha_creacion DATE NOT NULL,
+  multimedia VARCHAR(255),
+  PRIMARY KEY (codigo_anuncio)
+);
+
+CREATE TABLE grupo
+(
+  codigo_grupo VARCHAR(100) NOT NULL,
+  nombre_institucion VARCHAR(100) NOT NULL,
+  fecha_creacion DATE NOT NULL,
+  codigo_anuncio VARCHAR(100) NOT NULL,
+  cedula_docente VARCHAR(100) NOT NULL,
+  PRIMARY KEY (codigo_grupo),
+  
+  
+);
+
+CREATE TABLE niño
+(
+  identificacion VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
+  edad INT NOT NULL,
+  genero VARCHAR(100) NOT NULL,
+  fecha_nacimiento DATE NOT NULL,
+  parentesco_acudiente VARCHAR(100) NOT NULL,
+  cedula_acudiente VARCHAR(100) ,
+  codigo_grupo VARCHAR(100),
+  estado INT(1)	 NOT NULL,
+  PRIMARY KEY (identificacion),
+  FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente),
+  FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo_grupo)
+);
+
+------------------------------------------------------------------------------------------------------------------
+CREATE DATABASE mapi_sistema;
+USE mapi_sistema;
+CREATE TABLE docente(
+	cedula_docente varchar(100) PRIMARY KEY NOT NULL,
+    nombre varchar(100) NOT NULL,
+    apellido varchar(100) NOT NULL,
+    telefono varchar(100) NOT NULL,
+    clave varchar(100) NOT NULL,
+    estado int(1) NOT NULL
+);
+CREATE TABLE acudiente(
+	cedula_acudiente varchar(100) PRIMARY KEY NOT NULL,
+    nombre varchar(100) NOT NULL,
+    apellido varchar(100) NOT NULL,
+    clave varchar(100) NOT NULL,
+    estado int(1) NOT NULL
+);
+CREATE TABLE telefono(
+    numero varchar(100) ,
+    cedula_acudiente varchar(100) NOT NULL,
+    FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente)
+);
+CREATE TABLE acudiente_alternativo(
+    nombre varchar(100) NOT NULL,
+    apellido varchar(100) NOT NULL,
+    telefono varchar(100) NOT NULL,
+    cedula_acudiente varchar(100) NOT NULL,
+    FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente)
+);
+CREATE TABLE grupo(
+	codigo_grupo varchar(100) PRIMARY KEY NOT NULL,
+    nombre_grupo varchar(100) NOT NULL,
+    fecha_creacion date NOT NULL,
+    cedula_docente varchar(100) NOT NULL,
+    estado int(1) NOT NULL,
+    FOREIGN KEY (cedula_docente) REFERENCES docente(cedula_docente)
+);
+CREATE TABLE anuncio(
+	codigo_anuncio varchar(100) PRIMARY KEY NOT NULL,
+    titulo varchar(100) NOT NULL,
+    descripcion varchar(100) NOT NULL,
+    multimedia varchar(100),
+    fecha_creacion date NOT NULL,
+    codigo_grupo varchar(100) NOT NULL,
+    estado int(1) NOT NULL,
+    FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo_grupo)
+);
+CREATE TABLE nino(
+	identificacion varchar(100) PRIMARY KEY NOT NULL,
+    nombre varchar(100) NOT NULL,
+    apellido varchar(100) NOT NULL,
+    fecha_nacimiento date NOT NULL,
+    edad int(50) NOT NULL,
+    genero varchar(100) NOT NULL,
+    parentesco varchar(100) NOT NULL,
+    cedula_acudiente varchar (100) NOT NULL,
+    codigo_grupo varchar (100) NOT NULL,
+    estado int(1) NOT NULL,
+    FOREIGN KEY (cedula_acudiente) REFERENCES acudiente(cedula_acudiente),
+    FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo_grupo)
+);
+

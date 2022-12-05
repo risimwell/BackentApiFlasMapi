@@ -22,5 +22,16 @@ export interface Crearnino{
   codigo_grupo:String;
 }
 
+export interface Objetolistar{
+  identificacion:String;
+  nombre:String;
+  apellido:String;
+  edad:String;
+  genero:String;
+  fecha_nacimiento:Date;
+  codigo_grupo:String;
+}
 
-
+export interface Respuestanino{
+  ninos:Objetolistar[];
+}

@@ -1,8 +1,6 @@
 
-def listar_acudientes():
+def listar_acudientes(conexion):
     try:
-        from CONEXION.Conexion import conectar #IMPORTAMOS EL METODO DE LA CONEXION
-        conexion=conectar() #ESTABLECEMOS LA VARIABLE QUE CONTIENE LA RESPUESTA DEL METODO CONECTAR
         cursor = conexion.connection.cursor()  #INICIAMOS LA CONEXION
         sql = "CALL listar_acudientes()" #DECLARAM0S EL CODIGO SQL QUE SE EJECUTARA
         cursor.execute(sql) #EJECUTAMOS LA SENTENCIA SQL
@@ -17,10 +15,8 @@ def listar_acudientes():
         raise ex #RETORNAMOS LA EXCEPCION SI ALGO SALIO MAL 
 
 
-def listar_ninos():
+def listar_ninos(conexion):
     try:
-        from CONEXION.Conexion import conectar #IMPORTAMOS EL METODO DE LA CONEXION
-        conexion=conectar() #ESTABLECEMOS LA VARIABLE QUE CONTIENE LA RESPUESTA DEL METODO CONECTAR
         cursor = conexion.connection.cursor()  #INICIAMOS LA CONEXION
         sql = "CALL listar_niños()" #DECLARAM0S EL CODIGO SQL QUE SE EJECUTARA
         cursor.execute(sql) #EJECUTAMOS LA SENTENCIA SQL

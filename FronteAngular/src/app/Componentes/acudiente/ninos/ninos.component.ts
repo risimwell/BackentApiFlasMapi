@@ -8,6 +8,7 @@ import { Objetonino, Crearnino } from './../../../Modelos/Nino/nino';
 //Servicios
 import { NinoService } from './../../../Servicios/nino/nino.service';
 import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service';
+import { Objetolistar } from '../../../Modelos/Nino/nino';
 
 
 @Component({
@@ -28,11 +29,18 @@ export class NinosComponent implements OnInit {
     grupo: new FormControl('',Validators.required)
   })
   //Objeto
-  nino: Objetonino[]=[];
+  lista_nino: Objetolistar[]=[];
 
   constructor(private servicio_nino:NinoService,private obtenerData:EnvioDataService,private formBuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
+    console.log(this.lista_nino)
+    this.servicio_nino.getAll().subscribe(response=>{
+      console.log(response)
+      this.lista_nino=response.ninos;
+      console.log(this.lista_nino)
+    })
+  console.log(this.lista_nino)
   }
 
   Registrar_nino(form:any){
