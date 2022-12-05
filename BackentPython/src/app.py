@@ -202,7 +202,7 @@ def listar_nino():
                     nino = {'identificacion': fila[0], 'nombre': fila[1], 'apellido': fila[2], 'edad': fila[3], 'genero': fila[4], 'fecha_nacimiento': fila[5], 'codigo_grupo': fila[6]}
                     print(nino)
                     lista_nino.append(nino)
-                return jsonify({'usuarios': lista_nino, 'mensaje': "Usuarios listados.", 'exito': True}),200
+                return jsonify({'ninos': lista_nino, 'mensaje': "Usuarios listados.", 'exito': True}),200
             else:
                 return jsonify({'mensaje': "niños no encontrado.", 'exito': False}), 400
         except Exception as ex:

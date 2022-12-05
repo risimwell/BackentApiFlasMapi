@@ -23,8 +23,8 @@ export class NinoService {
    }
 
    getAll(){
-    return this.http.get<Respuestanino>(`${baseUrl}/listarninos`);
-  } 
+    return this.http.get<Respuestanino>(`${baseUrl}/listarninos`); 
+  }
 
    get(id: any): Observable<any> {
      return this.http.get(`${baseUrl}/${id}`);

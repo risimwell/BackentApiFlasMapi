@@ -34,15 +34,11 @@ export class NinosComponent implements OnInit {
   constructor(private servicio_nino:NinoService,private obtenerData:EnvioDataService,private formBuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
-    console.log(this.lista_nino)
     this.servicio_nino.getAll().subscribe(response=>{
-      console.log(response)
       this.lista_nino=response.ninos;
-      console.log(this.lista_nino)
     })
-  console.log(this.lista_nino)
   }
-
+  
   Registrar_nino(form:any){
     console.log("Esta entrando a la funcion");
     const nino: Crearnino={
