@@ -16,6 +16,8 @@ from VALIDACIONES.validaciones import *
 
 
 app = Flask(__name__)
+#COOKIE
+app.secret_key = '54SF4GHAFHGAS4' 
 
 def nombre():
     return app
