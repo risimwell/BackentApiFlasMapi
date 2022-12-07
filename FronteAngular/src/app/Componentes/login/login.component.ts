@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
 
+
 import { LoginService } from 'src/app/Servicios/login/login.service';
 import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service';
 
@@ -12,8 +13,7 @@ import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service
 
 })
 
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit  {
   formulario:FormGroup;
   usuario:any=""
   nombre:any=""

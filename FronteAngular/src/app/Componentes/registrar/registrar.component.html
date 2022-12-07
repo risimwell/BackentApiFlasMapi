@@ -29,32 +29,26 @@
                          <div class="card" >
                            <div class="card-body ">
                              <div class="row">
-                               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 columnaform">
+                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 columnaform">
                                  <form [formGroup]="formulario_acudiente" (ngSubmit)="Registrar_acudiente(formulario_acudiente.value)">
-                                   <div class="form-group campos ">
-
-
+                                   <div class="form-group campos">
                                     <input type="text" class="form-control" id="cedula_acudiente" name="cedula_acudiente" placeholder="Cedula" formControlName="cedula_acudiente" required>
                                    </div>
                                    <div class="form-group">
-
                                       <input type="text" class="form-control" id="nombre_acudiente" name="nombre_acudiente" placeholder="Nombre" formControlName="nombre_acudiente" required>
                                    </div>
                                    <div class="form-group ">
-                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
                                        <input type="text" class="form-control" id="apellido_acudiente" name="apellido_acudiente" placeholder="Apellido" formControlName="apellido_acudiente" required>
-                                     </div>
                                  </div>
                                    <div class="form-group">
-                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                          <input type="text" class="form-control" id="telefono_acudiente" name="telefono_acudiente" placeholder="Telefono" formControlName="telefono_acudiente" required>
-                                       </div>
+
                                    </div>
                                    <div class="form-group ">
-                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                          <input type="password" class="form-control" id="clave_acudiente" name="clave_acudiente" placeholder="Clave" formControlName="clave_acudiente" required>
-                                       </div>
+
                                    </div>
                                    <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -66,9 +60,9 @@
                                    </div>
                                  </form>
                                </div>
-                               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 imagen">
-                                 <h1>Registro acudiente</h1>
-                               </div>
+                              <!--  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 imagen">
+                                 <img src="../../../assets/indicador.png" alt="" width="500px">
+                               </div> -->
                              </div>
                            </div>
                          </div>
@@ -79,50 +73,51 @@
                       <!-- Aca arranca el fomulario de los docentes -->
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 formulario_docente">
                            <div class="row">
-                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <!--  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                <h1>hola imgen</h1>
-                             </div>
-                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 formulario">
+                             </div> -->
+                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 formulario">
                                  <div class="card" >
-                                   <div class="card-header">Formulario de registro docentes</div>
+
                                    <div class="card-body ">
                                      <form [formGroup]="formulario_docente" (ngSubmit)="Registrar_docente(formulario_docente.value)">
                                        <div class="form-group ">
-                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                            <input type="text" class="form-control" id="cedula_docente" name="cedula_docente" placeholder="Cedula" formControlName="cedula_docente" required>
-                                         </div>
+
                                        </div>
                                        <div class="form-group">
-                                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                              <input type="text" class="form-control" id="nombre_docente" name="nombre_docente" placeholder="Nombre" formControlName="nombre_docente" required>
-                                           </div>
+
                                        </div>
                                        <div class="form-group ">
-                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                            <input type="text" class="form-control" id="apellido_docente" name="apellido_docente" placeholder="Apellido" formControlName="apellido_docente" required>
-                                         </div>
+
                                      </div>
                                        <div class="form-group">
-                                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                              <input type="text" class="form-control" id="telefono_docente" name="telefono_docente" placeholder="Telefono" formControlName="telefono_docente" required>
-                                           </div>
+
                                        </div>
                                        <div class="form-group">
-                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                            <input type="text" class="form-control" id="institucion_docente" name="institucion_docente" placeholder="Institucion" formControlName="telefono_docente" required>
-                                         </div>
+
                                        </div>
                                        <div class="form-group ">
-                                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
                                              <input type="password" class="form-control" id="clave_docente" name="clave_docente" placeholder="Clave" formControlName="clave_docente" required>
-                                           </div>
+
                                        </div>
                                        <div class="row">
-                                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                          <button type="submit" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Registrar</button>
-
-                                           <a href="/login">iniciar sesion</a>
-                                         </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                          <button type="submit" class="btn btn-success" >Registrar</button>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                          <a href="/login">iniciar sesion</a>
+                                        </div>
                                        </div>
                                      </form>
                                    </div>

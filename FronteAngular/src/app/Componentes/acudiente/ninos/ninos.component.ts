@@ -38,7 +38,7 @@ export class NinosComponent implements OnInit {
       this.lista_nino=response.ninos;
     })
   }
-  
+
   Registrar_nino(form:any){
     console.log("Esta entrando a la funcion");
     const nino: Crearnino={
@@ -52,6 +52,7 @@ export class NinosComponent implements OnInit {
         codigo_grupo:form.grupo
 
     }
+    console.log(nino)
     console.log("Va a disparar el servicio");
     this.servicio_nino.create(nino).subscribe({
       next: () => {

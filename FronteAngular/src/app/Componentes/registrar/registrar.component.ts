@@ -72,7 +72,12 @@ export class RegistrarComponent implements OnInit {
         },
         error: () => {
           // Si hubo un error dentro del registro del usuario
-          alert("No se pudo realizar el registro\nVerifique e intente de nuevo")
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "No se pudo realizar el registro\nVerifique e intente de nuevo",
+          })
+          //alert("No se pudo realizar el registro\nVerifique e intente de nuevo")
         }
       }
     );
@@ -89,18 +94,25 @@ export class RegistrarComponent implements OnInit {
         institucion:form.institucion_docente,
         clave:form.clave_docente
     }
-    console.log(docente)
     //Envio de datos al servicio
     this.servicio_Docente.create(docente).subscribe({
         next: () => {
           //Alert de confirmacion
-          alert("Docente registrado con exito")
+          Swal.fire(
+            'Docente registrado con exito'
+          )
+          //alert("Docente registrado con exito")
           //Redireccion a la pagina
           this.router.navigateByUrl('login')
         },
         error: () => {
           // Si hubo un error dentro del registro del usuario
-          alert("No se pudo realizar el registro\nVerifique e intente de nuevo")
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "No se pudo realizar el registro\nVerifique e intente de nuevo",
+          })
+          //alert("No se pudo realizar el registro\nVerifique e intente de nuevo")
         }
       }
     );

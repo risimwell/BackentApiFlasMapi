@@ -1,37 +1,45 @@
+<div class="card">
+  <div class="card-body">
+   <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+      <img src="../../../assets/bienvenida.png" width="800px">
+    </div>
+    <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
+          <div class="card-form formularioinicio">
+            <div class="card-header justify-content-center">
+              <h3>Iniciar sesion</h3>
+            </div>
+            <div class="card-body">
+              <form class="form-horizontal" [formGroup]= "formulario" (ngSubmit)="ingresar(formulario.value)" >
+                <div class="input-group form-group">
+
+                  <input type="email" class="form-control" name="cedula" formControlName="cedula" id="cedula" placeholder="Documento identidad">
+
+                </div>
+                <div class="input-group form-group">
+
+                  <input type="password" class="form-control" name="clave" formControlName="clave" id="clave" placeholder="Clave">
+                </div>
+
+                <div class="input-group form-group">
+                  <button type="submit" class="btn btn-primary login_btn" >Ingresar</button>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-center links">
+                <p>No tiene cuenta aun?  <a href="/registrar"> Registrate</a> </p>
 
 
-<div class="container ">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header justify-content-center">
-				<h3>Iniciar sesion</h3>
-			</div>
-			<div class="card-body">
-				<form class="form-horizontal" [formGroup]= "formulario" (ngSubmit)="ingresar(formulario.value)" >
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"><img src="../../../assets/cedula.png" alt="" height="40px"></i></span>
-						</div>
-            <input type="email" class="form-control" name="cedula" formControlName="cedula" id="cedula" placeholder="Documento identidad">
-
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-            <input type="password" class="form-control" name="clave" formControlName="clave" id="clave" placeholder="Clave">
-					</div>
-
-					<div class="form-group">
-						<button type="submit" class="btn btn-dark" >Ingresar</button>
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					No tiene cuenta aun?<a href="/registrar">Registrate</a>
-				</div>
-			</div>
-		</div>
-	</div>
+              </div>
+            </div>
+          </div>
+    </div>
+   </div>
+  </div>
 </div>
+
+
+
+
+

@@ -182,6 +182,8 @@ def listar_grupos():
 @app.route('/registronino', methods=['POST'])
 def registrar_nino(): 
     try:
+        print(request.json['identificacion'])
+        
         if registro_nino(request,conexion):
             return jsonify({'mensaje': "Niño registrado.", 'exito': True}), 200
         else:
