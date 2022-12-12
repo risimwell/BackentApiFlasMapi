@@ -2,12 +2,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
+import Swal from 'sweetalert2';
 
 //Objetos y clases
 import { Objetonino, Crearnino } from './../../../Modelos/Nino/nino';
 //Servicios
 import { NinoService } from './../../../Servicios/nino/nino.service';
 import { EnvioDataService } from 'src/app/Servicios/envioData/envio-data.service';
+import { CerrarService} from 'src/app/Servicios/cerrar_sesion/cerrar.service';
+
 import { Objetolistar } from '../../../Modelos/Nino/nino';
 
 
@@ -31,7 +34,7 @@ export class NinosComponent implements OnInit {
   //Objeto
   lista_nino: Objetolistar[]=[];
 
-  constructor(private servicio_nino:NinoService,private obtenerData:EnvioDataService,private formBuilder:FormBuilder,private router:Router) { }
+  constructor(private servicio_nino:NinoService,private obtenerData:EnvioDataService, private cerrar:CerrarService,private formBuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
     this.servicio_nino.getAll().subscribe(response=>{

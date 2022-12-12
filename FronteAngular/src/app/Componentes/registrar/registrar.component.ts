@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, Form } from '@angular/forms';
 import { Router } from "@angular/router";
-
+import Swal from 'sweetalert2';
 
 
 //Objetos y clases
@@ -10,7 +10,7 @@ import { Objetoacudiente, Crearacudiente } from '../../Modelos/Acudiente/Acudien
 //Servicios
 import { DocenteService } from '../../Servicios/docente/docente.service';
 import {AcudienteService} from '../../Servicios/acudiente/acudiente.service'
-import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -65,10 +65,8 @@ export class RegistrarComponent implements OnInit {
           Swal.fire(
             'Acudiente registrado con exito'
           )
-
           //Redireccion a la pagina
           this.router.navigateByUrl('login')
-
         },
         error: () => {
           // Si hubo un error dentro del registro del usuario

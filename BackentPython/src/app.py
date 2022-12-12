@@ -1,7 +1,9 @@
 #IMPORTACIO METODOS PROPIOS PARA QUE FUNCIONE EL API
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
+import jwt 
+import bcrypt
 
 #IMPORTACION CONFIGURACION DE LA BASE DE DATOS
 from config import config
@@ -16,8 +18,9 @@ from VALIDACIONES.validaciones import *
 
 
 app = Flask(__name__)
+
 #COOKIE
-app.secret_key = '54SF4GHAFHGAS4' 
+app.secret_key='54SF4GHAFHGAS4' 
 
 def nombre():
     return app
@@ -47,6 +50,7 @@ def iniciar_sesion():
     if resultado is not None:
         print(clave,resultado[1])
         if (clave == resultado[1]):
+            session["user"] = cedula
             return jsonify({'usuario':"acudiente", 'exito': True,'nombre':resultado[0],'cedula':cedula}), 200
         else:
             return " Contraseña Incorrecta" 
@@ -57,10 +61,19 @@ def iniciar_sesion():
         resultado = cursor.fetchone()
         if resultado is not None:
             if (clave == resultado[1]):
+                session["user"] = cedula
                 return jsonify({'usuario':"docente", 'exito': True,'nombre':resultado[0],'cedula':cedula}), 200
             else:
                 return " Contraseña Incorrecta" 
         return "Usuario no registrado"
+
+@app.route('/cerrarsesion', methods=['GET'])
+def cerrar_sesion():
+    if "user" in session:
+    
+        session.pop("user")
+        return jsonify({'mensaje': "Sesion cerrada", 'exito': True}), 200
+    return jsonify({'mensaje': "No se pudo cerrar sesion", 'exito': False}), 400
 
 
 #CRUD acudiente
@@ -323,6 +336,13 @@ def eliminar_curso(codigo):
     except Exception as ex:
         return jsonify({'mensaje': "Error", 'exito': False})
 
+
+@app.route('/comprar/<idproducto>',  methods=['GET'])
+def comprar_f(idproducto):
+    if "user" in session:
+        email =  session["user"]
+        return "Señor {} Ud ha comprado el articulo de id {}".format(email, idproducto)
+    return "Por favor inicie sesión"
 
 def pagina_no_encontrada(error):
     return "<h1>Página no encontrada</h1>", 404

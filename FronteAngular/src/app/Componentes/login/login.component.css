@@ -7,6 +7,8 @@
   border: transparent;
 }
 .card-form{
+  border: black solid 2px;
+  border-radius: 20px;
 height: 370px;
 margin-left: 110px;
 margin-top: auto;
@@ -38,6 +40,6 @@ width: 100px;
 
 .login_btn:hover{
 color: black;
-padding: 10px;
+border: black solid 1px ;
 background-color: white;
 }

@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private clientHtpp: HttpClient) { }
 
   inicioSesion(datoslogin:any):Observable<any>{
-
     return this.clientHtpp.post(this.LOGIN, datoslogin, { headers: { 'Content-Type': 'application/json' }})
   }
+
 }
